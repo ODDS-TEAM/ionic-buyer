@@ -1,0 +1,165 @@
+<ion-content force-overscroll="false" has-bouncing="true" color="gray">
+  <div style="height: 35%;">
+    <ion-icon
+      class="back-icon"
+      (click)="cancelModal()"
+      name="ios-close-circle"
+    ></ion-icon>
+    <ion-img [src]="'../../../../assets/images/hamburger.jpg'"></ion-img>
+  </div>
+  <div class="ion-padding-start container">
+    <div class="ion-padding-start" style="float: left; width: 70%;">
+      <p class="food-text">หมายิ้ม - ลุงธี</p>
+      <p class="describe-text">เป็นหมาที่มีความสุขที่สุดในโลก</p>
+    </div>
+    <div
+      class="ion-text-right ion-padding-top ion-padding-end"
+      style="float: right; width: 20%;"
+    >
+      <p class="price-text">65</p>
+    </div>
+  </div>
+
+  <ion-list>
+    <ion-radio-group>
+      <ion-list-header>
+        เพิ่มเครื่อง
+      </ion-list-header>
+
+      <ion-item>
+        <ion-radio
+          color="gprimary"
+          mode="md"
+          slot="start"
+          value="smiling"
+        ></ion-radio>
+        <ion-label
+          style="white-space: normal; overflow: visible; font-size: 10pt; width: 70%;"
+          >ยิ้มแบบมีความสุขที่สุดในโลก</ion-label
+        >
+        <p class="ion-padding-end addition-price-text">+10</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-radio
+          color="gprimary"
+          mode="md"
+          slot="start"
+          value="evil_smiling"
+        ></ion-radio>
+        <ion-label
+          style="white-space: normal; overflow: visible; font-size: 10pt; width: 70%;"
+          >ยิ้มแบบมีเลศนัย</ion-label
+        >
+        <p class="ion-padding-end addition-price-text">+3</p>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <ion-list>
+    <ion-radio-group>
+      <ion-list-header>
+        เลือกชนิด
+      </ion-list-header>
+
+      <ion-item>
+        <ion-radio
+          color="gprimary"
+          mode="md"
+          slot="start"
+          value="smiling"
+        ></ion-radio>
+        <ion-label
+          style="white-space: normal; overflow: visible; font-size: 10pt; width: 70%;"
+          >ยิ้มแบบมีความสุขที่สุดในโลก</ion-label
+        >
+        <p class="ion-padding-end addition-price-text">+10</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-radio
+          color="gprimary"
+          mode="md"
+          slot="start"
+          value="evil_smiling"
+        ></ion-radio>
+        <ion-label
+          style="white-space: normal; overflow: visible; font-size: 10pt; width: 70%;"
+          >ยิ้มแบบมีเลศนัย</ion-label
+        >
+        <p class="ion-padding-end addition-price-text">+3</p>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <div class="ion-padding ion-text-center number-container">
+    <span style="text-align: center; width: 100%; font-size: 16px; vertical-align: middle;">
+      <p
+        style="margin: 0px; width: 100%; text-align: center; vertical-align: middle;"
+      >
+        <ion-icon
+          (click)="updateNumber(-1)"
+          color="lightgray"
+          class="ion-margin-end icon"
+          name="remove-circle"
+          style="display:inline-block; font-size: 20px;"
+        ></ion-icon>
+        <span>
+          <p style="margin: 0px; display: inline-block; width: 64px;">
+            {{ totalNumber }}
+          </p>
+        </span>
+        <ion-icon
+          (click)="updateNumber(1)"
+          color="lightgray"
+          class="ion-margin-start icon"
+          name="add-circle"
+          style="display:inline-block; font-size: 20px;"
+        ></ion-icon>
+      </p>
+    </span>
+  </div>
+
+  <div class="ion-padding addition-container">
+    <form>
+      <ion-label>เพิ่มเติม</ion-label>
+      <ion-textarea
+        class="ion-margin-top ion-margin-bottom"
+        type="text"
+        autoGrow="true"
+        scroll="false"
+      ></ion-textarea>
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer no-border class="footer-container">
+  <ion-grid
+    class="ion-no-padding"
+    style="float: left; width: 100%; height: 56px;"
+  >
+    <ion-row
+      style="width: 100%; height: 56px;"
+      class="ion-no-padding ion-align-items-center"
+    >
+      <ion-col class="ion-padding-end" class="ion-text-right">
+        <span style="vertical-align: middle; display: inline-block">
+          <p style="font-size: 12px; display: inline; vertical-align: middle;">
+            total
+          </p>
+          <p
+            style="display: inline; vertical-align: middle;"
+            class="ion-padding-start ion-padding-end total-price-text"
+          >
+            {{ totalPrice }}
+          </p>
+        </span>
+      </ion-col>
+      <ion-col class="ion-padding-end ion-justify-content-center">
+        <ion-button (click)="addToBasket()" color="gprimary" class="footer-button"
+          >add to basket</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

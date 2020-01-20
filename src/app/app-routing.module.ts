@@ -14,6 +14,22 @@ const routes: Routes = [
     path: 'main',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
+  {
+    path: 'lunch-this-week',
+    loadChildren: () => import('./pages/lunch-this-week/lunch-this-week.module').then( m => m.LunchThisWeekPageModule)
+  },
+  {
+    path: 'punsuk-this-week',
+    loadChildren: () => import('./pages/punsuk-this-week/punsuk-this-week.module').then( m => m.PunsukThisWeekPageModule)
+  },
+  {
+    path: 'food',
+    loadChildren: () => import('./pages/food/food.module').then( m => m.FoodPageModule)
+  },
+  {
+    path: 'punsuk',
+    loadChildren: () => import('./pages/punsuk/punsuk.module').then( m => m.PunsukPageModule)
+  },
 ];
 @NgModule({
   imports: [

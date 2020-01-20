@@ -1,4 +1,73 @@
-.welcome-card img {
-  max-height: 35vh;
+@import "../../app.component.scss";
+
+ion-content[scrollx="false"],
+ion-content[scrolly="false"] {
   overflow: hidden;
+}
+
+ion-card {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+ion-card-content {
+  background-color: white;
+}
+
+.margin-top-negative {
+  margin-top: -48px;
+}
+
+.vertical-scroll-row {
+  white-space: nowrap;
+  width: 100%;
+  overflow-x: auto !important;
+}
+
+div[scrollx="true"] {
+  padding: 0px 8px 0px 8px;
+  display: flex;
+  flex-wrap: nowrap;
+  box-sizing: unset;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .scroll-item {
+    flex: 0 0 auto;
+    border-radius: 10px;
+    height: 72px;
+    width: 84px;
+    overflow: hidden;
+    box-shadow: none !important;
+    margin: 16px 8px;
+  }
+}
+
+.scroll-img {
+  object-fit: cover;
+  height: 100%;
+}
+
+.two-menu-img {
+  margin: 8px auto 0px auto;
+  width: 30%;
+  height: 30%;
+}
+
+.this-week-header {
+  color: #676767;
+  margin-bottom: 0px;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.this-week-card {
+  margin-top: 8px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+}
+
+.container {
+  padding-left: 8px;
+  padding-right: 8px;
 }
