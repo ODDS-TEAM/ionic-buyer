@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiCallerService } from 'src/app/services/api-caller.service';
 
 @Component({
   selector: 'app-home',
@@ -8,12 +9,20 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
 
+  lunchThisWeekImg = [];
+
   username: string;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private apiCaller: ApiCallerService
+  ) {}
 
   ngOnInit(): void {
     this.username = 'Teema';
+    this.apiCaller.getWeekLunchImage().then((res: any) => {
+      this.lunchThisWeekImg = res;
+    });
   }
 
   goToFood() {

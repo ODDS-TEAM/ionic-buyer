@@ -1,1 +1,14 @@
-@import '../../app.component.scss';
+@import "../../app.component.scss";
+
+ion-list-header {
+  color: #676767;
+  font-weight: 700;
+  font-size: 12pt;
+  letter-spacing: normal;
+  font-family: helvetica !important;
+  text-transform: none;
+}
+
+ion-list {
+  margin-bottom: 12px;
+}

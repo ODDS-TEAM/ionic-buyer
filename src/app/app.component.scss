@@ -1,10 +1,15 @@
+:root {
+  --ion-font-family: "Helvetica";
+}
+
 .back-icon {
   font-size: 18pt;
 }
 
 .title-header {
   text-align: left;
-  font-weight: 300;
+  font-family: helvetica !important;
+  font-weight: 400;
 }
 
 .menu-text {
@@ -49,12 +54,11 @@ ion-item:last-child {
   --ion-color-tint: #999999;
 }
 
-
 .ion-color-lightgray {
-  --ion-color-base: #B7B7B7;
+  --ion-color-base: #b7b7b7;
   --ion-color-base-rgb: 56, 128, 255;
-  --ion-color-contrast: #B7B7B7;
+  --ion-color-contrast: #ffffff;
   --ion-color-contrast-rgb: 255, 255, 255;
-  --ion-color-shade: #303030;
+  --ion-color-shade: #d8d8d8;
   --ion-color-tint: #999999;
 }

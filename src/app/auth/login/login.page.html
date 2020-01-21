@@ -1,11 +1,11 @@
-<ion-content color="primary" class="ion-padding">
-  <ion-grid style="height: 100%;">
+<ion-content class="ion-no-padding" style="height: 100%;">
+  <ion-grid class="ion-padding container" style="height: 100%;">
     <ion-row class="ion-align-items-center" style="width: 100%; height: 50%;">
       <ion-col
         class="ion-justify-content-center ion-text-center"
         style="width: 100%;"
       >
-        <h1 class="ion-align-self-center">SEC Kin Kao</h1>
+        <h1 style="color: white;" class="ion-align-self-center">SEC<br>Kin Kao</h1>
       </ion-col>
     </ion-row>
     <ion-row style="width: 100%; height: 50%;">
@@ -19,14 +19,14 @@
           (ngSubmit)="onClickLogin()"
         >
           <ion-input
-            formControlName="username"
-            placeholder="Username"
+            formControlName="email"
+            placeholder="email"
             type="text"
           ></ion-input>
           <ion-input
             formControlName="password"
             class="ion-margin-top"
-            placeholder="Password"
+            placeholder="password"
             type="password"
           ></ion-input>
           <ion-button
@@ -43,10 +43,10 @@
   </ion-grid>
 </ion-content>
 
-<ion-footer class="ion-text-center">
+<ion-footer no-border class="ion-text-center">
   <span style="display: inline-block; vertical-align: middle;">
-    <p style="vertical-align: middle;" (click)="onClickRegister()">
-      Create an account  <ion-icon
+    <p style="vertical-align: middle; font-weight: bold;" (click)="onClickRegister()">
+      create an account  <ion-icon
       class="icon"
         name="ios-arrow-dropright"
         style="display:inline-block;"

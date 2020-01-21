@@ -1,0 +1,144 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons class="ion-margin-start" slot="start">
+      <ion-icon
+        class="back-icon"
+        (click)="cancelModal()"
+        name="ios-close-circle"
+      ></ion-icon>
+    </ion-buttons>
+    <p class="ion-margin-start header">ลุงธี</p>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-list class="ion-padding-bottom ion-margin-top">
+    <ion-list-header>
+      <p style="font-family: helvetica !important;" class="ion-no-margin">
+        Order
+      </p>
+    </ion-list-header>
+
+    <ion-item style="padding-top: 8px; padding-right: 8px;">
+      <ion-img
+        class="ion-margin-top ion-margin-bottom"
+        style="width: 100px; height: 60px;"
+        [src]="'../../../assets/images/chihuahua.jpg'"
+      ></ion-img>
+      <div class="ion-margin-start ion-margin-bottom food-menu-container">
+        <p class="menu-text">สุนัขยิ้ม</p>
+        <p class="describe-text">ยิ้มมาก</p>
+        <p class="describe-text">ตาสวด</p>
+        <p class="describe-text">ตาสวด</p>
+        <p class="describe-text">ตาสวด</p>
+        <p class="describe-text">ตาสวด</p>
+      </div>
+      <div slot="end" style="margin-top: 2px; margin-bottom: auto;">
+        <p class="multipler-text">2x</p>
+      </div>
+      <div
+        class="ion-text-right"
+        slot="end"
+        style="height: 100%; margin-top: 2px; margin-bottom: auto;"
+      >
+        <p class="price-text">1200</p>
+        <ion-button
+          style="position: absolute; right: 4px; bottom: 2px;"
+          color="lightgray"
+          size="small"
+          class="edit-button"
+          >edit</ion-button
+        >
+      </div>
+    </ion-item>
+
+    <ion-item style="padding-top: 8px; padding-right: 8px;">
+      <ion-img
+        class="ion-margin-top ion-margin-bottom"
+        style="width: 100px; height: 60px;"
+        [src]="'../../../assets/images/chihuahua.jpg'"
+      ></ion-img>
+      <div class="ion-margin-start ion-margin-bottom food-menu-container">
+        <p class="menu-text">สุนัขยิ้ม</p>
+        <p class="describe-text">ยิ้มมาก</p>
+        <p class="describe-text">ตาสวด</p>
+      </div>
+      <div slot="end" style="margin-top: 2px; margin-bottom: auto;">
+        <p class="multipler-text">2x</p>
+      </div>
+      <div
+        class="ion-text-right"
+        slot="end"
+        style="height: 100%; margin-top: 2px; margin-bottom: auto;"
+      >
+        <p class="price-text">1200</p>
+        <ion-button
+          style="position: absolute; right: 4px; bottom: 2px;"
+          color="lightgray"
+          size="small"
+          class="edit-button"
+          >edit</ion-button
+        >
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <p style="font-family: helvetica !important;" class="ion-no-margin">
+        Payment method
+      </p>
+    </ion-list-header>
+
+    <ion-item class="ion-margin-bottom">
+      <p
+        class="ion-no-padding ion-no-margin"
+        slot="start"
+        style="font-size: 10pt; color: #676767; padding-left: 8px;"
+      >
+        จ่ายหน้าร้าน
+      </p>
+      <ion-button
+        [disabled]="true"
+        slot="end"
+        color="lightgray"
+        size="small"
+        class="edit-button"
+        >change</ion-button
+      >
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer no-border class="footer-container">
+  <ion-grid
+    class="ion-no-padding"
+    style="float: left; width: 100%; height: 56px;"
+  >
+    <ion-row
+      style="width: 100%; height: 56px;"
+      class="ion-no-padding ion-align-items-center"
+    >
+      <ion-col class="ion-padding-end" class="ion-text-right">
+        <span style="vertical-align: middle; display: inline-block">
+          <p
+            style="color: #676767; font-size: 12px; display: inline; vertical-align: middle;"
+          >
+            total
+          </p>
+          <p
+            style="color: #10a19b; display: inline; vertical-align: middle;"
+            class="ion-padding-start ion-padding-end total-price-text"
+          >
+            {{ totalPrice }}
+          </p>
+        </span>
+      </ion-col>
+      <ion-col class="ion-padding-end ion-justify-content-center">
+        <ion-button (click)="orderNow()" color="gprimary" class="footer-button"
+          >Order now</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

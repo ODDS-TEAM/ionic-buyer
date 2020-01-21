@@ -1,0 +1,21 @@
+@import "../../../../app.component.scss";
+
+ion-content {
+  background-color: transparent;
+}
+
+.modal-wrapper {
+  background-color: transparent;
+}
+
+.confirm-text {
+    font-size: 12pt;
+    color: #676767;
+}
+
+ion-button {
+    width: 84px;
+    height: 32px;
+    color: white !important;
+    font-size: 10pt;
+}

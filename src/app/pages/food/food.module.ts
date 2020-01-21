@@ -8,6 +8,7 @@ import { FoodPageRoutingModule } from './food-routing.module';
 
 import { FoodPage } from './food.page';
 import { OptionsPageModule } from './options/options.module';
+import { BasketPageModule } from './basket/basket.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { OptionsPageModule } from './options/options.module';
     FormsModule,
     IonicModule,
     FoodPageRoutingModule,
-    OptionsPageModule
+    OptionsPageModule,
+    BasketPageModule,
   ],
   declarations: [FoodPage]
 })

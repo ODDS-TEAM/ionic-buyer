@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'punsuk',
     loadChildren: () => import('./pages/punsuk/punsuk.module').then( m => m.PunsukPageModule)
   },
+  {
+    path: 'register',
+    loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
+  },
 ];
 @NgModule({
   imports: [

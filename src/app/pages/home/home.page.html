@@ -60,7 +60,6 @@
       </div>
 
       <div class="container">
-
         <h6 class="margin-top-negative ion-margin this-week-header">
           lunch this week
         </h6>
@@ -70,44 +69,20 @@
         >
           <ion-card-content class="ion-no-padding">
             <div scrollX="true" class="scroll">
-              <ion-card class="ion-no-padding ion-no-margin scroll-item">
+              <ion-card
+                *ngIf="lunchThisWeekImg.length == 0"
+                class="ion-no-padding ion-no-margin scroll-item"
+              >
                 <ion-card-content class="ion-no-padding" style="height: 100%;">
-                  <ion-img
-                    class="scroll-img"
-                    [src]="'../../../assets/images/hamburger.jpg'"
-                  ></ion-img>
+                  <ion-img class="scroll-img" [src]="'../../../assets/images/hamburger.jpg'"></ion-img>
                 </ion-card-content>
               </ion-card>
-              <ion-card class="ion-no-padding ion-no-margin scroll-item">
+              <ion-card
+                *ngFor="let imageUrl of lunchThisWeekImg"
+                class="ion-no-padding ion-no-margin scroll-item"
+              >
                 <ion-card-content class="ion-no-padding" style="height: 100%;">
-                  <ion-img
-                    class="scroll-img"
-                    [src]="'../../../assets/images/hamburger.jpg'"
-                  ></ion-img>
-                </ion-card-content>
-              </ion-card>
-              <ion-card class="ion-no-padding ion-no-margin scroll-item">
-                <ion-card-content class="ion-no-padding" style="height: 100%;">
-                  <ion-img
-                    class="scroll-img"
-                    [src]="'../../../assets/images/hamburger.jpg'"
-                  ></ion-img>
-                </ion-card-content>
-              </ion-card>
-              <ion-card class="ion-no-padding ion-no-margin scroll-item">
-                <ion-card-content class="ion-no-padding" style="height: 100%;">
-                  <ion-img
-                    class="scroll-img"
-                    [src]="'../../../assets/images/hamburger.jpg'"
-                  ></ion-img>
-                </ion-card-content>
-              </ion-card>
-              <ion-card class="ion-no-padding ion-no-margin scroll-item">
-                <ion-card-content class="ion-no-padding" style="height: 100%;">
-                  <ion-img
-                    class="scroll-img"
-                    [src]="'../../../assets/images/hamburger.jpg'"
-                  ></ion-img>
+                  <ion-img class="scroll-img" [src]="imageUrl"></ion-img>
                 </ion-card-content>
               </ion-card>
             </div>
