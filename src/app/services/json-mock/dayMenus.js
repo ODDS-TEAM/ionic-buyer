@@ -9,7 +9,7 @@ export default [
         "foodMenuItem": {
             "_id": "A1",
             "merchantId": "Z9",
-            "restaurantName": "ลุงเริง",
+            "restaurantName": "ลุงเริง", // Merge from
             "name": "ข้าวกะเพรา",
             "price": 35,
             "description": "ผัดด้วยใบกะเพราจากสวนวัลฮาลา",
