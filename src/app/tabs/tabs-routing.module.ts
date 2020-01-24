@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { AuthGuard } from '../guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -42,12 +43,12 @@ const routes: Routes = [
         redirectTo: '/main/home',
         pathMatch: 'full'
       }
-    ]
+    ],
   },
   {
     path: '',
     redirectTo: '/main/home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   }
 ];
 

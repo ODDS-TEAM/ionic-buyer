@@ -1,10 +1,14 @@
 <ion-header no-border class="header-container">
   <ion-toolbar class="ion-margin-top" style="height: 100%">
-    <ion-buttons style="position: absolute; top: 16px; left: 16px;" class="ion-margin-start" slot="start">
+    <ion-buttons
+      style="position: absolute; top: 16px; left: 16px;"
+      class="ion-margin-start"
+      slot="start"
+    >
       <ion-back-button
         color="gprimary"
         [text]="''"
-        defaultHref="/main/home"
+        defaultHref="/"
       ></ion-back-button>
     </ion-buttons>
     <p class="ion-margin-top" class="title-text">Register</p>
@@ -15,21 +19,80 @@
   <ion-grid style="height: 100%;">
     <ion-row style="height: 100%;" class="ion-align-items-center">
       <ion-col style="height: 100%;" class="ion-justify-content-center">
-        <form class="ion-padding">
+        <form
+          [formGroup]="credentialsForm"
+          class="ion-padding"
+          (ngSubmit)="onClickComplete()"
+        >
           <ion-list>
-            <ion-item>
-              <ion-label position="stacked"><ion-text color="gprimary">Email</ion-text></ion-label>
-              <ion-input inputmode="email" type="text"></ion-input>
+            <ion-item class="ion-margin-bottom">
+              <ion-icon
+                slot="end"
+                (click)="hintDisplayName()"
+                color="gprimary"
+                style="float: right; font-size: 16pt;"
+                name="ios-help-circle"
+              ></ion-icon>
+              <ion-label position="stacked"
+                ><ion-text color="gprimary">Display name</ion-text></ion-label
+              >
+              <ion-input
+                formControlName="displayName"
+                inputmode="text"
+                type="text"
+              ></ion-input>
             </ion-item>
-            <ion-item>
-              <ion-label position="stacked"><ion-text color="gprimary">Password</ion-text></ion-label>
-              <ion-input inputmode="password" type="password"></ion-input>
+            <ion-item class="ion-margin-bottom">
+              <ion-label position="stacked"
+                ><ion-text color="gprimary">Email</ion-text></ion-label
+              >
+              <ion-input
+                formControlName="email"
+                inputmode="email"
+                type="text"
+              ></ion-input>
             </ion-item>
-            <ion-item>
-              <ion-label position="stacked"><ion-text color="gprimary">Confirm password</ion-text></ion-label>
-              <ion-input inputmode="password" type="password"></ion-input>
+            <ion-item class="ion-margin-bottom">
+              <ion-label position="stacked"
+                ><ion-text color="gprimary">Password</ion-text></ion-label
+              >
+              <ion-input
+                formControlName="password"
+                inputmode="password"
+                type="password"
+              ></ion-input>
+            </ion-item>
+            <ion-item class="ion-margin-bottom">
+              <ion-label position="stacked"
+                ><ion-text color="gprimary"
+                  >Confirm password</ion-text
+                ></ion-label
+              >
+              <ion-input
+                formControlName="confirmPassword"
+                inputmode="password"
+                type="password"
+              ></ion-input>
             </ion-item>
           </ion-list>
+          <div class="ion-margin-top ion-text-center" style="width: 100%;">
+            <ion-button
+              [disabled]="!credentialsForm.valid"
+              type="submit"
+              class="ion-margin-top submit-button"
+              shape="round"
+            >
+              <span style="display: inline-block; vertical-align: middle;">
+                <p style="vertical-align: middle; font-weight: bold;">
+                  Complete
+                  <ion-icon
+                    class="icon"
+                    name="ios-arrow-dropright"
+                    style="display:inline-block;"
+                  ></ion-icon></p
+              ></span>
+            </ion-button>
+          </div>
         </form>
       </ion-col>
     </ion-row>

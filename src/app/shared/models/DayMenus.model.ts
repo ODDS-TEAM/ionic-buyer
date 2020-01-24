@@ -1,4 +1,4 @@
-import { FoodMenus } from './foodMenus.model';
+import { FoodMenus } from './FoodMenus.model';
 
 export class DayMenus {
     _id: string;

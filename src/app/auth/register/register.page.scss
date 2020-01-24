@@ -1,15 +1,37 @@
-@import '../../app.component.scss';
-
 .title-text {
-    display: block;
-    margin-top: 16px;
-    font-family: 'Arial Rounded MT Bold';
-    font-size: x-large;
-    width: 100%;
-    height: 100%;
-    text-align: center;
+  display: block;
+  margin-top: 16px;
+  font-family: "Arial Rounded MT Bold";
+  font-size: x-large;
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
 .header-container {
-    height: 128px;
+  height: 128px;
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+ion-button {
+    width: 75%;
+    height: 36px;
+    --background: linear-gradient(270deg, #4BDB9D, #40B8AD);
+}
+
+ion-text {
+    font-weight: 600;
+}
+
+.ion-color-gprimary {
+  --ion-color-base: #10a19b;
+  --ion-color-base-rgb: 56, 128, 255;
+  --ion-color-contrast: #fff;
+  --ion-color-contrast-rgb: 255, 255, 255;
+  --ion-color-shade: #0d8d89;
+  --ion-color-tint: #47b3af;
 }
