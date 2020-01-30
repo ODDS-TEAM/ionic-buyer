@@ -7,99 +7,178 @@
         defaultHref="/main/home"
       ></ion-back-button>
     </ion-buttons>
-    <p class="ion-margin-start title-header">Lunch this week</p>
+    <ion-text class="ion-margin-start title-header">Lunch this week</ion-text>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding-top" color="light">
-
   <!-- Monday -->
   <ion-list *ngIf="menus.mon.length != 0">
     <ion-list-header color="light" class="ion-padding-end">
-        <p class="ion-no-margin" style="font-family: helvetica !important;">Monday</p>
+      <ion-text class="ion-no-margin" style="font-family: helvetica !important;">
+        Monday
+      </ion-text>
     </ion-list-header>
 
-    <ion-item *ngFor="let food of menus.mon">
-      <ion-img
-        style="width: 100px; height: 60px;"
-        [src]="food.foodMenuItem.imgUrl"
-      ></ion-img>
-      <div class="ion-margin">
-        <p class="menu-text">{{ food.foodMenuItem.name }}</p>
-        <p class="store-text">{{ food.foodMenuItem.restaurantName }}</p>
-      </div>
+    <ion-item class="ion-no-padding" *ngFor="let food of menus.mon">
+      <div class="day-banner" style="background-color: rgb(255, 255, 128);"></div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <ion-img
+              style="object-fit: cover; height: 80px;"
+              [src]="food.imageUrl"
+            ></ion-img>
+          </ion-col>
+          <ion-col size="8">
+            <div class="ion-padding-start">
+              <ion-text color="darkgray" class="menu-text"
+                >{{ food.menuName }}</ion-text
+              >
+              <br />
+              <ion-text color="gray" class="store-text"
+                >{{ food.merchantName }}</ion-text
+              >
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </ion-list>
 
   <!-- Tuesday -->
   <ion-list *ngIf="menus.tue.length != 0">
     <ion-list-header color="light" class="ion-padding-end">
-        <p class="ion-no-margin" style="font-family: helvetica !important;">Tuesday</p>
+      <ion-text class="ion-no-margin" style="font-family: helvetica !important;">
+        Tueday
+      </ion-text>
     </ion-list-header>
 
-    <ion-item *ngFor="let food of menus.tue">
-      <ion-img
-        style="width: 100px; height: 60px;"
-        [src]="food.foodMenuItem.imgUrl"
-      ></ion-img>
-      <div class="ion-margin">
-        <p class="menu-text">{{ food.foodMenuItem.name }}</p>
-        <p class="store-text">{{ food.foodMenuItem.restaurantName }}</p>
-      </div>
+    <ion-item class="ion-no-padding" *ngFor="let food of menus.tue">
+      <div class="day-banner" style="background-color: rgb(255, 168, 255);"></div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <ion-img
+              style="object-fit: cover; height: 80px;"
+              [src]="food.imageUrl"
+            ></ion-img>
+          </ion-col>
+          <ion-col size="8">
+            <div class="ion-padding-start">
+              <ion-text color="darkgray" class="menu-text"
+                >{{ food.menuName }}</ion-text
+              >
+              <br />
+              <ion-text color="gray" class="store-text"
+                >{{ food.merchantName }}</ion-text
+              >
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </ion-list>
 
   <!-- Wednesday -->
   <ion-list *ngIf="menus.wed.length != 0">
     <ion-list-header color="light" class="ion-padding-end">
-      <p class="ion-no-margin" style="font-family: helvetica !important;">Wednesday</p>
+      <ion-text class="ion-no-margin" style="font-family: helvetica !important;">
+        Wednesday
+      </ion-text>
     </ion-list-header>
 
-    <ion-item *ngFor="let food of menus.wed">
-      <ion-img
-        style="width: 100px; height: 60px;"
-        [src]="food.foodMenuItem.imgUrl"
-      ></ion-img>
-      <div class="ion-margin">
-        <p class="menu-text">{{ food.foodMenuItem.name }}</p>
-        <p class="store-text">{{ food.foodMenuItem.restaurantName }}</p>
-      </div>
+    <ion-item class="ion-no-padding" *ngFor="let food of menus.wed">
+      <div class="day-banner" style="background-color: rgb(128, 255, 177);"></div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <ion-img
+              style="object-fit: cover; height: 80px;"
+              [src]="food.imageUrl"
+            ></ion-img>
+          </ion-col>
+          <ion-col size="8">
+            <div class="ion-padding-start">
+              <ion-text color="darkgray" class="menu-text"
+                >{{ food.menuName }}</ion-text
+              >
+              <br />
+              <ion-text color="gray" class="store-text"
+                >{{ food.merchantName }}</ion-text
+              >
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </ion-list>
 
   <!-- Thursday -->
   <ion-list *ngIf="menus.thu.length != 0">
     <ion-list-header color="light" class="ion-padding-end">
-        <p class="ion-no-margin" style="font-family: helvetica !important;">Thursday</p>
+      <ion-text class="ion-no-margin" style="font-family: helvetica !important;">
+        Thursday
+      </ion-text>
     </ion-list-header>
 
-    <ion-item *ngFor="let food of menus.thu">
-      <ion-img
-        style="width: 100px; height: 60px;"
-        [src]="food.foodMenuItem.imgUrl"
-      ></ion-img>
-      <div class="ion-margin">
-        <p class="menu-text">{{ food.foodMenuItem.name }}</p>
-        <p class="store-text">{{ food.foodMenuItem.restaurantName }}</p>
-      </div>
+    <ion-item class="ion-no-padding" *ngFor="let food of menus.thu">
+      <div class="day-banner" style="background-color: rgb(255, 185, 128);"></div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <ion-img
+              style="object-fit: cover; height: 80px;"
+              [src]="food.imageUrl"
+            ></ion-img>
+          </ion-col>
+          <ion-col size="8">
+            <div class="ion-padding-start">
+              <ion-text color="darkgray" class="menu-text"
+                >{{ food.menuName }}</ion-text
+              >
+              <br />
+              <ion-text color="gray" class="store-text"
+                >{{ food.merchantName }}</ion-text
+              >
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </ion-list>
 
   <!-- Friday -->
   <ion-list *ngIf="menus.fri.length != 0">
     <ion-list-header color="light" class="ion-padding-end">
-        <p class="ion-no-margin" style="font-family: helvetica !important;">Friday</p>
+      <ion-text class="ion-no-margin" style="font-family: helvetica !important;">
+        Friday
+      </ion-text>
     </ion-list-header>
 
-    <ion-item *ngFor="let food of menus.fri">
-      <ion-img
-        style="width: 100px; height: 60px;"
-        [src]="food.foodMenuItem.imgUrl"
-      ></ion-img>
-      <div class="ion-margin">
-        <p class="menu-text">{{ food.foodMenuItem.name }}</p>
-        <p class="store-text">{{ food.foodMenuItem.restaurantName }}</p>
-      </div>
+    <ion-item class="ion-no-padding" *ngFor="let food of menus.fri">
+      <div class="day-banner" style="background-color: rgb(166, 207, 255);"></div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <ion-img
+              style="object-fit: cover; height: 80px;"
+              [src]="food.imageUrl"
+            ></ion-img>
+          </ion-col>
+          <ion-col size="8">
+            <div class="ion-padding-start">
+              <ion-text color="darkgray" class="menu-text"
+                >{{ food.menuName }}</ion-text
+              >
+              <br />
+              <ion-text color="gray" class="store-text"
+                >{{ food.merchantName }}</ion-text
+              >
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </ion-list>
 </ion-content>

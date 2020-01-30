@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
-import { StorageService } from 'src/app/services/storage.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -30,12 +29,12 @@ export class RegisterPage implements OnInit {
       confirmPassword: ['', [Validators.required, Validators.minLength(1)]],
     });
 
-    this.credentialsForm.setValue({
-      displayName: 'TeemaNaja',
-      email: 'tm@odds.team',
-      password: '55589',
-      confirmPassword: '55589',
-    });
+    // this.credentialsForm.setValue({
+    //   displayName: 'TeemaNaja',
+    //   email: 'tm@odds.team',
+    //   password: '55589',
+    //   confirmPassword: '55589',
+    // });
 
     // this.storageService.getCredentialsInfo()
     //   .then(res => console.log(res))

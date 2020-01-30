@@ -25,10 +25,11 @@ export class LunchThisWeekPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.presentLoading();
-    this.apiCaller.getWeekMenus().then((res: any) => {
-      this.menus = res;
-      this.loading.dismiss();
+    this.presentLoading().then(() => {
+      this.apiCaller.getWeekMenus().then((res: any) => {
+        this.menus = res;
+        this.loading.dismiss();
+      });
     });
   }
 

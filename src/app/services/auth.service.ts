@@ -29,9 +29,16 @@ export class AuthService {
   }
 
   relogin() {
-    this.storageService.getCredentialsInfo()
-      .then((res: MailCredentials) => { this.login(res).then().catch(); console.log(res); })
-      .catch(err => console.log(err));
+    return new Promise<boolean>((resolve, reject) => {
+      this.storageService.getCredentialsInfo()
+        .then((res: MailCredentials) => {
+          this.login(res)
+            .then(() => resolve(true))
+            .catch(() => resolve(false));
+          console.log(res);
+        })
+        .catch(err => reject(false));
+    });
   }
 
   saveProfile(user: User, mailCredentials: MailCredentials) {
@@ -50,6 +57,8 @@ export class AuthService {
           },
           err => {
             if (err.status === this.ERR_STATUS) {
+              reject(err);
+            } else {
               reject(err);
             }
           }

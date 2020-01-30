@@ -26,10 +26,24 @@ export class LoginPage implements OnInit {
       email: ['', [Validators.required, Validators.email, Validators.minLength(1)]],
       password: ['', [Validators.required, Validators.minLength(1)]]
     });
+
+    this.credentialsForm.setValue({
+      email: 'chompu@gmail.com',
+      password: '5555',
+    });
+    this.reLogin();
   }
 
   async reLogin() {
-    this.authService.relogin();
+    this.authService.relogin()
+      .then(res => {
+        if (res) {
+          this.router.navigate(['/main/home']);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   async presentToast(message: string) {

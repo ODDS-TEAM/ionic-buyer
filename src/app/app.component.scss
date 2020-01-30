@@ -13,27 +13,19 @@
 }
 
 .menu-text {
+  font-weight: 600;
   margin-top: 0px;
   margin-bottom: 0px;
 }
 
 .store-text {
   margin-top: 8px;
-  font-weight: 300;
-  font-size: 8pt;
+  font-weight: 400;
+  font-size: 10pt;
 }
 
 ion-item:last-child {
   --inner-border-width: 0;
-}
-
-.ion-color-gray {
-  --ion-color-base: #f7f7f7;
-  --ion-color-base-rgb: 56, 128, 255;
-  --ion-color-contrast: #505050;
-  --ion-color-contrast-rgb: 255, 255, 255;
-  --ion-color-shade: #d4d4d4;
-  --ion-color-tint: #ffffff;
 }
 
 .ion-color-gprimary {
