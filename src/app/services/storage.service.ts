@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { MailCredentials } from '../shared/models/MailCredentials.model';
 import { User } from '../shared/models/User.model';
-import { BasketItem } from '../shared/models/BasketItem.model';
+import { BasketItem } from '../shared/models/Basket.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,13 @@ export class StorageService {
 
   constructor(private storage: Storage) { }
 
-  getUserInfo() {
-    return this.storage.get(this.USER_KEY);
+  async getUserInfo() {
+    try {
+      const ret: User = JSON.parse(await this.storage.get(this.USER_KEY));
+      return ret;
+    } catch (err) {
+      throw err;
+    }
   }
 
   setUserInfo(user: User) {
@@ -52,18 +57,6 @@ export class StorageService {
       this.storage.remove(this.CREDENTIALS_KEY)
         .then(res => resolve('emptied'))
         .catch(err => reject(err));
-    });
-  }
-
-  getBasket(): Promise<BasketItem[]> {
-    return new Promise((resolve, reject) => {
-      this.storage.get(this.BASKET_KEY)
-        .then(value => {
-          resolve(JSON.parse(value));
-        })
-        .catch(err => {
-          reject(err);
-        });
     });
   }
 }

@@ -1,9 +1,83 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Activity
-    </ion-title>
+  <ion-toolbar style="padding-top: 14px;"> </ion-toolbar>
+  <ion-toolbar style="padding-bottom: 14px;">
+    <ion-text
+      color="darkgray"
+      class="header-title ion-margin-start ion-margin-bottom"
+      >Activity</ion-text
+    >
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content style="z-index: 1; background-color: #f3f3f3;" color="whitegray">
+  <ion-refresher
+    style="background-color: #f3f3f3; --background: #f3f3f3;"
+    slot="fixed"
+    (ionRefresh)="getActivityList($event)"
+  >
+    <ion-refresher-content
+      style="color: #808080; background-color: #f3f3f3; --background: #f3f3f3; z-index: 20;"
+      pullFactor="0.5"
+      pullMin="100"
+      pullMax="100"
+      pullingIcon=""
+      refreshingSpinner="circles"
+      refreshingText="Refreshing"
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-toolbar class="ion-text-center" color="whitegray">
+    <ion-text color="darkgray"
+      >{{ isLoading ? 'Loading...' : 'No order now' }}</ion-text
+    >
+  </ion-toolbar>
+  <ion-list class="ion-no-margin">
+
+    <!-- Iteration item -->
+    <ion-item
+      (click)="openActivityModal()"
+      style="margin-bottom: 8px;"
+      class="ion-no-padding"
+    >
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col
+            size="2"
+            class="ion-align-items-center ion-justify-content-center"
+            style="padding-left: 12px;"
+          >
+            <ion-avatar class="ion-align-self-center" style="margin: auto;">
+              <ion-img [src]="'../../../assets/images/groceries.png'"></ion-img>
+            </ion-avatar>
+          </ion-col>
+          <ion-col
+            size="4"
+            class="ion-padding-start ion-padding-end"
+            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+          >
+            <ion-text color="darkgray" style="font-weight: bold;">
+              ชื่อคนขายยาวมากไม่รู้จะเอาไปใส่ตรงไหน
+            </ion-text>
+            <br />
+          </ion-col>
+          <ion-col size="6" class="ion-text-center">
+            <ion-badge
+              color="waitinggray"
+              style="margin-top: auto; margin-bottom: auto;"
+            >
+              Waiting for confirmation
+            </ion-badge>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer no-border color="whitegray">
+  <ion-toolbar class="ion-text-center" color="whitegray">
+    <ion-button style="height: 32px;" color="lightgray" shape="round">
+      View history
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

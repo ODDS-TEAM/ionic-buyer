@@ -1,24 +1,21 @@
-<ion-content force-overscroll="false" has-bouncing="true" color="gray">
+<ion-content force-overscroll="false" has-bouncing="true" color="whitegray">
   <div style="height: 35%;">
     <ion-icon
       class="back-icon"
       (click)="cancelModal()"
       name="ios-close-circle"
     ></ion-icon>
-    <ion-img [src]="'../../../../assets/images/hamburger.jpg'"></ion-img>
+    <ion-img style="object-fit:cover; width: auto; height: 100%;" [src]="'../../../../assets/images/hamburger.jpg'"></ion-img>
   </div>
-  <div class="ion-padding-start container">
-    <div class="ion-padding-start" style="float: left; width: 70%;">
-      <p class="food-text">หมายิ้ม - ลุงธี</p>
-      <p class="describe-text">เป็นหมาที่มีความสุขที่สุดในโลก</p>
-    </div>
-    <div
-      class="ion-text-right ion-padding-top ion-padding-end"
-      style="float: right; width: 20%;"
-    >
-      <p class="price-text">65</p>
-    </div>
-  </div>
+  <ion-grid class="ion-padding-start container">
+    <ion-row style="height: 100%;" class="ion-align-items-center">
+      <ion-col size="12" class="ion-padding-start ion-padding-end">
+        <ion-text color="darkgray" class="food-text">หมายิ้ม - ลุงธี</ion-text>
+        <ion-text style="float: right;" color="darkgray" class="price-text">65</ion-text><br>
+        <ion-text color="darkgray" class="describe-text">เป็นหมาที่มีความสุขที่สุดในโลก</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <ion-list>
     <ion-radio-group>
@@ -63,12 +60,12 @@
       </ion-list-header>
 
       <ion-item>
-        <ion-radio
+        <ion-checkbox
           color="gprimary"
           mode="md"
           slot="start"
           value="smiling"
-        ></ion-radio>
+        ></ion-checkbox>
         <ion-label
           style="white-space: normal; overflow: visible; font-size: 10pt; width: 70%;"
           >ยิ้มแบบมีความสุขที่สุดในโลก</ion-label
@@ -77,12 +74,12 @@
       </ion-item>
 
       <ion-item>
-        <ion-radio
+        <ion-checkbox
           color="gprimary"
           mode="md"
           slot="start"
           value="evil_smiling"
-        ></ion-radio>
+        ></ion-checkbox>
         <ion-label
           style="white-space: normal; overflow: visible; font-size: 10pt; width: 70%;"
           >ยิ้มแบบมีเลศนัย</ion-label
@@ -92,33 +89,31 @@
     </ion-radio-group>
   </ion-list>
 
-  <div class="ion-padding ion-text-center number-container">
-    <span style="text-align: center; width: 100%; font-size: 16px; vertical-align: middle;">
-      <p
-        style="margin: 0px; width: 100%; text-align: center; vertical-align: middle;"
-      >
+  <ion-grid class="ion-padding ion-text-center number-container">
+    <ion-row class="ion-align-items-center">
+      <ion-col class="ion-text-right" size="4">
         <ion-icon
           (click)="updateNumber(-1)"
           color="lightgray"
-          class="ion-margin-end icon"
+          class="icon"
           name="remove-circle"
-          style="display:inline-block; font-size: 20px;"
+          style="font-size: 20pt;"
         ></ion-icon>
-        <span>
-          <p style="margin: 0px; display: inline-block; width: 64px;">
-            {{ totalNumber }}
-          </p>
-        </span>
+      </ion-col>
+      <ion-col size="4">
+        <ion-text>{{ totalNumber }}</ion-text>
+      </ion-col>
+      <ion-col class="ion-text-left" size="4">
         <ion-icon
           (click)="updateNumber(1)"
           color="lightgray"
-          class="ion-margin-start icon"
+          class="icon"
           name="add-circle"
-          style="display:inline-block; font-size: 20px;"
+          style="font-size: 20pt;"
         ></ion-icon>
-      </p>
-    </span>
-  </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <div class="ion-padding addition-container">
     <form>
@@ -142,22 +137,20 @@
       style="width: 100%; height: 56px;"
       class="ion-no-padding ion-align-items-center"
     >
-      <ion-col class="ion-padding-end" class="ion-text-right">
-        <span style="vertical-align: middle; display: inline-block">
-          <p style="color: #676767; font-size: 12px; display: inline; vertical-align: middle;">
-            total
-          </p>
-          <p
-            style="display: inline; vertical-align: middle;"
-            class="ion-padding-start ion-padding-end total-price-text"
-          >
-            {{ totalPrice }}
-          </p>
-        </span>
+      <ion-col size="3" class="ion-padding-end ion-text-right">
+        <ion-text color="darkgray" style="font-size: 12px;">
+          total
+        </ion-text>
       </ion-col>
-      <ion-col class="ion-padding-end ion-justify-content-center">
+      <ion-col size="3" class="ion-padding-end ion-text-right">
+          <ion-text class="total-price-text">
+            {{ totalPrice }}
+        </ion-text>
+
+      </ion-col>
+      <ion-col size="6" class="ion-padding-end ion-justify-content-center">
         <ion-button (click)="addToBasket()" color="gprimary" class="footer-button"
-          >add to basket</ion-button
+          >Add to basket</ion-button
         >
       </ion-col>
     </ion-row>

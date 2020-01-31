@@ -8,72 +8,28 @@
 </ion-header>
 
 <ion-content color="light" class="ion-padding-top">
-  <ion-list class="ion-padding-bottom">
+  <ion-list *ngFor="let restaurant of dayMenus; let r=index" class="ion-padding-bottom">
     <ion-list-header class="ion-padding-end">
-      <p>ลุงธี</p>
+      <ion-text>{{ restaurant.restaurantName }}</ion-text>
     </ion-list-header>
 
-    <ion-item (click)="goToFoodOption()" class="ion-padding-end">
+    <ion-item
+      *ngFor="let menu of restaurant.menus; let m=index"
+      (click)="onPressMenu(r, m)"
+      class="ion-padding-end"
+    >
         <ion-img
           class="ion-margin-top ion-margin-bottom"
-          style="width: 100px; height: 60px;"
-          [src]="'../../../assets/images/chihuahua.jpg'"
+          style="object-fit: cover; width: 100px; height: 60px;"
+          [src]="menu.imageUrl"
         ></ion-img>
         <div class="ion-margin-start">
-          <p class="menu-text">สุนัขยิ้ม</p>
+          <ion-text class="menu-text">{{ menu.menuName }}</ion-text>
         </div>
         <div slot="end">
-          <p class="price-text">1200</p>
+          <ion-text class="price-text">{{ menu.price }}</ion-text>
         </div>
       </ion-item>
-
-    <ion-item class="ion-padding-end">
-      <ion-img
-        class="ion-margin-top ion-margin-bottom"
-        style="width: 100px; height: 60px;"
-        [src]="'../../../assets/images/chihuahua.jpg'"
-      ></ion-img>
-      <div class="ion-margin-start">
-        <p class="menu-text">สุนัขยิ้ม</p>
-      </div>
-      <div slot="end">
-        <p class="price-text">1200</p>
-      </div>
-    </ion-item>
-  </ion-list>
-
-  <ion-list class="ion-padding-bottom">
-    <ion-list-header class="ion-padding-end">
-      <p>ลุงธี</p>
-    </ion-list-header>
-
-    <ion-item class="ion-padding-end">
-      <ion-img
-        class="ion-margin-top ion-margin-bottom"
-        style="width: 100px; height: 60px;"
-        [src]="'../../../assets/images/chihuahua.jpg'"
-      ></ion-img>
-      <div class="ion-margin-start">
-        <p class="menu-text">สุนัขยิ้ม</p>
-      </div>
-      <div slot="end">
-        <p class="price-text">1200</p>
-      </div>
-    </ion-item>
-
-    <ion-item class="ion-padding-end">
-      <ion-img
-        class="ion-margin-top ion-margin-bottom"
-        style="width: 100px; height: 60px;"
-        [src]="'../../../assets/images/chihuahua.jpg'"
-      ></ion-img>
-      <div class="ion-margin-start">
-        <p class="menu-text">สุนัขยิ้ม</p>
-      </div>
-      <div slot="end">
-        <p class="price-text">1200</p>
-      </div>
-    </ion-item>
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

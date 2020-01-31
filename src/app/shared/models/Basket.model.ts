@@ -1,4 +1,4 @@
-export class BasketItem {
+export class Basket {
     customerId: string;
     customerName: string;
     customerImageUrl: string;
@@ -6,10 +6,10 @@ export class BasketItem {
     merchantName: string;
     orderType: string;
     paymentMethod: string;
-    items: Item[];
+    items: BasketItem[];
 }
 
-class Item {
+export class BasketItem {
     dayMenuId: string;
     foodName: string;
     numberOfItem: number;
