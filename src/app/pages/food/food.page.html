@@ -1,14 +1,26 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons class="ion-margin-start" slot="start">
-      <ion-back-button color="dark" [text]="''" defaultHref="/main/home"></ion-back-button>
+      <ion-back-button
+        color="dark"
+        [text]="''"
+        defaultHref="/main/home"
+      ></ion-back-button>
     </ion-buttons>
     <p class="ion-margin-start title-header">Food</p>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="light" class="ion-padding-top">
-  <ion-list *ngFor="let restaurant of dayMenus; let r=index" class="ion-padding-bottom">
+  <ion-toolbar color="light" class="ion-text-center" *ngIf="!isLoading && dayMenus.length == 0">
+    <ion-text color="darkgray">
+      There's no menu today :(
+    </ion-text>
+  </ion-toolbar>
+  <ion-list
+    *ngFor="let restaurant of dayMenus; let r=index"
+    class="ion-padding-bottom"
+  >
     <ion-list-header class="ion-padding-end">
       <ion-text>{{ restaurant.restaurantName }}</ion-text>
     </ion-list-header>
@@ -18,23 +30,30 @@
       (click)="onPressMenu(r, m)"
       class="ion-padding-end"
     >
-        <ion-img
-          class="ion-margin-top ion-margin-bottom"
-          style="object-fit: cover; width: 100px; height: 60px;"
-          [src]="menu.imageUrl"
-        ></ion-img>
-        <div class="ion-margin-start">
-          <ion-text class="menu-text">{{ menu.menuName }}</ion-text>
-        </div>
-        <div slot="end">
-          <ion-text class="price-text">{{ menu.price }}</ion-text>
-        </div>
-      </ion-item>
+      <ion-img
+        class="ion-margin-top ion-margin-bottom"
+        style="object-fit: cover; width: 100px; height: 60px;"
+        [src]="menu.imageUrl"
+      ></ion-img>
+      <div class="ion-margin-start">
+        <ion-text class="menu-text">{{ menu.menuName }}</ion-text>
+      </div>
+      <div slot="end">
+        <ion-text class="price-text">{{ menu.price }}</ion-text>
+      </div>
+    </ion-item>
   </ion-list>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button (click)="goToBasketView()" color="gprimary">
-        <ion-icon name="md-basket"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+  <ion-fab
+    *ngIf="basket.hasItem()"
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    style="overflow: visible;"
+  >
+  <ion-fab-button (click)="goToBasketView()" color="gprimary">
+    <ion-icon name="md-basket"></ion-icon>
+  </ion-fab-button>
+  <ion-badge style="position: absolute; top: 0; left: 0;" color="danger">{{ basket.getNumberOfItem() }}</ion-badge>
+  </ion-fab>
 </ion-content>

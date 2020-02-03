@@ -12,6 +12,13 @@
 </ion-header>
 
 <ion-content class="ion-padding-top" color="light">
+
+  <ion-toolbar class="ion-text-center" color="light" *ngIf="!isLoading && menus.mon.length == 0 && menus.tue.length == 0 && menus.wed.length == 0 && menus.thu.length == 0 && menus.fri.length == 0">
+    <ion-text color="darkgray">
+      Doesn't have menu for this week yet
+    </ion-text>
+  </ion-toolbar>
+  
   <!-- Monday -->
   <ion-list *ngIf="menus.mon.length != 0">
     <ion-list-header color="light" class="ion-padding-end">

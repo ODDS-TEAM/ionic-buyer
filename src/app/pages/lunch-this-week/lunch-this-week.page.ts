@@ -9,7 +9,7 @@ import { LoadingController } from '@ionic/angular';
 })
 export class LunchThisWeekPage implements OnInit {
 
-  loading: HTMLIonLoadingElement;
+  isLoading = true;
 
   menus = {
     mon: [],
@@ -25,10 +25,13 @@ export class LunchThisWeekPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.presentLoading().then(() => {
+    this.presentLoading().then(loading => {
       this.apiCaller.getWeekMenus().then((res: any) => {
         this.menus = res;
-        this.loading.dismiss();
+      }).catch(err => console.log(err))
+      .finally(() => {
+        loading.dismiss();
+        this.isLoading = false;
       });
     });
   }
@@ -39,7 +42,7 @@ export class LunchThisWeekPage implements OnInit {
       spinner: 'bubbles'
     });
     await loading.present();
-    this.loading = loading;
+    return loading;
   }
 
 }

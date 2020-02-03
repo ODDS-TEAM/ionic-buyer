@@ -1,5 +1,4 @@
 @import "../../../app.component.scss";
-@import "../food.page.scss";
 
 ion-list-header {
   color: #676767;
@@ -48,12 +47,11 @@ ion-item {
 }
 
 .price-text {
-  width: 100%;
+  font-family: helvetica;
   margin-top: 2px;
   margin-bottom: auto;
-  text-align: right;
+  font-weight: 300;
   font-size: 10pt;
-  font-weight: 700;
 }
 
 .edit-button {
@@ -96,4 +94,11 @@ ion-item {
 .confirm-popover {
   --width: 80% !important;
   --height: 50% !important;
+}
+
+.menu-text {
+  font-family: helvetica;
+  margin-top: 0px;
+  font-size: 10pt;
+  font-weight: 700;
 }

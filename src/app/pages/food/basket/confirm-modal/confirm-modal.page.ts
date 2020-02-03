@@ -20,6 +20,7 @@ export class ConfirmModalPage implements OnInit {
   }
 
   order() {
+    console.log('order!');
     this.popoverController.dismiss('complete');
   }
 

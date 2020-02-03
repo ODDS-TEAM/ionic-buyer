@@ -27,10 +27,6 @@ export class LoginPage implements OnInit {
       password: ['', [Validators.required, Validators.minLength(1)]]
     });
 
-    this.credentialsForm.setValue({
-      email: 'chompu@gmail.com',
-      password: '5555',
-    });
     this.reLogin();
   }
 

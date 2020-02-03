@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { ConfirmModalPage } from './confirm-modal/confirm-modal.page';
 import { OverlayEventDetail } from '@ionic/core';
+import { BasketService } from 'src/app/services/basket.service';
+import { Basket } from 'src/app/shared/models/Basket.model';
+import { ApiCallerService } from 'src/app/services/api-caller.service';
 
 @Component({
   selector: 'app-basket',
@@ -10,15 +13,24 @@ import { OverlayEventDetail } from '@ionic/core';
 })
 export class BasketPage implements OnInit {
 
-  totalPrice = 80;
+  COMPLETE = 'complete';
+
+  totalPrice: number;
+  basket: Basket;
 
   constructor(
     private modalController: ModalController,
-    private popoverController: PopoverController
+    private popoverController: PopoverController,
+    private basketService: BasketService,
+    private apiCaller: ApiCallerService
   ) { }
 
   ngOnInit() {
-    this.orderNow();
+    this.basket = this.basketService.getBasket();
+    this.totalPrice = 0;
+    for (const item of this.basket.items) {
+      this.totalPrice += item.price * item.numberOfItem;
+    }
   }
 
   cancelModal() {
@@ -40,8 +52,17 @@ export class BasketPage implements OnInit {
 
     await popover.present();
 
-    popover.onDidDismiss().then((res: OverlayEventDetail) => {
-      console.log(res);
+    popover.onDidDismiss().then(async (res: OverlayEventDetail) => {
+      if (res.data === this.COMPLETE) {
+        try {
+          const bRes = await this.apiCaller.orderBasket(this.basket);
+          console.log(bRes);
+          await this.basketService.newBasket();
+          await this.modalController.dismiss('someactivityid', 'activity');
+        } catch (err) {
+          console.log(err);
+        }
+      }
     });
   }
 

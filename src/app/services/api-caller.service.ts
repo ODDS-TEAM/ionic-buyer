@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import dayMenus from './json-mock/dayMenus.js';
 import { HttpClient } from '@angular/common/http';
 import { WeekMenu } from '../shared/models/WeekMenus.model.js';
 import { DayMenus } from '../shared/models/DayMenus.model.js';
+import { BasketService } from './basket.service.js';
+import { Basket } from '../shared/models/Basket.model.js';
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +14,23 @@ export class ApiCallerService {
   FOOD_URL = `${this.WEB_SERVICE_URL}/customer/food`;
   WEEK_URL = `${this.FOOD_URL}/week`;
   TODAY_URL = `${this.FOOD_URL}/today`;
+  ORDER_URL = `${this.FOOD_URL}/order`;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
   ) { }
 
   getWeekLunchImage() {
-    // tslint:disable-next-line: variable-name
-    const _this = this;
     return new Promise((resolve, reject) => {
       this.http.request<WeekMenu[]>('GET', this.WEEK_URL, {
         observe: 'response'
       }).subscribe(
         res => {
+          console.log(res.body);
           resolve(this.toImageUrlArray(res.body));
         }, err => {
           if (err.status === 401) {
-            resolve(this.toImageUrlArray([]));
+            resolve([]);
           }
           reject();
         }
@@ -38,8 +39,6 @@ export class ApiCallerService {
   }
 
   getWeekMenus() {
-    // tslint:disable-next-line: variable-name
-    const _this = this;
     return new Promise((resolve, reject) => {
       this.http.request<WeekMenu[]>('GET', this.WEEK_URL, {
         observe: 'response'
@@ -108,6 +107,21 @@ export class ApiCallerService {
           if (err.status === 401) {
             resolve([]);
           }
+          reject(err);
+        }
+      );
+    });
+  }
+
+  orderBasket(basket: Basket) {
+    return new Promise((resolve, reject) => {
+      this.http.request('POST', this.ORDER_URL, {
+        observe: 'response',
+        body: basket
+      }).subscribe(
+        res => {
+          resolve(res.body);
+        }, err => {
           reject(err);
         }
       );

@@ -14,6 +14,10 @@ export class BasketService {
   ) {
   }
 
+  getNumberOfItem() {
+    return this.basket.items.length;
+  }
+
   hasItem() {
     return this.basket.items.length !== 0;
   }
@@ -35,7 +39,7 @@ export class BasketService {
       merchantId: '',
       orderType: 'food',
       merchantName: '',
-      paymentMethod: 'unknown',
+      paymentMethod: 'Cash',
       items: []
     });
   }
@@ -50,6 +54,10 @@ export class BasketService {
 
   setBasket(basket: Basket) {
     this.basket = basket;
+  }
+
+  setPaymentMethod(paymentMethod: string) {
+    this.basket.paymentMethod = paymentMethod;
   }
 
   isSameMerchant(merchantId: string) {

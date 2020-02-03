@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController, AlertController } from '@ionic/angular';
+import { ModalController, AlertController, LoadingController } from '@ionic/angular';
 import { OptionsPage } from './options/options.page';
 import { OverlayEventDetail } from '@ionic/core';
 import { BasketPage } from './basket/basket.page';
 import { DayMenus } from 'src/app/shared/models/DayMenus.model';
 import { ApiCallerService } from 'src/app/services/api-caller.service';
 import { StorageService } from 'src/app/services/storage.service';
-import { Basket, BasketItem } from 'src/app/shared/models/Basket.model';
+import { BasketItem } from 'src/app/shared/models/Basket.model';
 import { BasketService } from 'src/app/services/basket.service';
+
 
 @Component({
   selector: 'app-food',
@@ -20,26 +21,44 @@ export class FoodPage implements OnInit {
   cart = [];
   dayMenus: DayMenus[] = [];
 
+  loading: HTMLIonLoadingElement;
+
+  isLoading = true;
+
   constructor(
     private router: Router,
     private modalController: ModalController,
     private api: ApiCallerService,
-    private storage: StorageService,
-    private basket: BasketService,
+    private loadingController: LoadingController,
+    public basket: BasketService,
     private alertController: AlertController,
-    private toast: AlertController,
   ) { }
 
   ngOnInit() {
-    this.api.getTodayMenus()
-      .then(res => {
-        this.dayMenus = res;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.presentLoading().then(loading => {
+      this.api.getTodayMenus()
+        .then(res => {
+          this.dayMenus = res;
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        .finally(() => {
+          loading.dismiss();
+          this.isLoading = false;
+        });
+    }).catch(err => console.log(err));
     // this.goToFoodOption();
     // this.goToBasketView();
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Loading',
+      spinner: 'bubbles'
+    });
+    await loading.present();
+    return loading;
   }
 
   async goToFoodOption() {
@@ -62,8 +81,12 @@ export class FoodPage implements OnInit {
     });
 
     modal.onDidDismiss().then((detail: OverlayEventDetail) => {
-      if (detail == null) {
+      if (!detail.data) {
         return;
+      } else {
+        if (detail.role === 'activity') {
+          this.router.navigate(['/main/activity'], { queryParams: { openActivityDetail: true, activityId: detail.data }});
+        }
       }
     });
     await modal.present();
@@ -79,7 +102,6 @@ export class FoodPage implements OnInit {
     merchantId: string,
     merchantName: string) {
 
-    console.log(merchantId);
     const alert = await this.alertController.create({
       header,
       message,
@@ -98,7 +120,6 @@ export class FoodPage implements OnInit {
               this.basket.setCurrentMerchant(merchantId, merchantName);
             }
             this.addMenuToBasket(basketItem);
-            console.log(this.basket.getBasket());
           }
         }
       ]
@@ -164,8 +185,6 @@ export class FoodPage implements OnInit {
   async addMenuToBasket(basketItem: BasketItem) {
     try {
       this.basket.addBasketItem(basketItem);
-      console.log(this.basket.getBasket());
-
     } catch (err) {
       throw err;
     }

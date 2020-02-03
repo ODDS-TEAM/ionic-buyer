@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ConfirmModalPageRoutingModule } from './confirm-modal-routing.module';
-
 import { ConfirmModalPage } from './confirm-modal.page';
 
 @NgModule({
