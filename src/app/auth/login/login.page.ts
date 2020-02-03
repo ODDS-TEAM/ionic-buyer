@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
     this.authService.relogin()
       .then(res => {
         if (res) {
-          this.router.navigate(['/main/home']);
+          this.router.navigate(['/main/activity']);
         }
       })
       .catch(err => {

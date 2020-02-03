@@ -1,0 +1,36 @@
+.circular {
+  position: absolute;
+  box-shadow: 0px 0px 24px 0px rgba(158, 158, 158, 0.5);
+  top: -125vw;
+  left: -50vw;
+  background-color: white;
+  width: 200vw;
+  height: 200vw;
+  border-radius: 200vw;
+}
+
+.menu-text {
+  color: var(--ion-color-darkgray);
+  font-weight: bold;
+}
+
+.option-text {
+  font-size: 10pt;
+}
+
+.stretch {
+  display: inline-block;
+  -webkit-transform: scale(0.9, 1); /* Safari and Chrome */
+  -moz-transform: scale(0.9, 1); /* Firefox */
+  -ms-transform: scale(0.9, 1); /* IE 9 */
+  -o-transform: scale(0.9, 1); /* Opera */
+  transform: scale(0.9, 1); /* W3C */
+}
+
+ion-text h3 {
+  font-weight: 600;
+}
+
+// ion-col {
+//   border: 1px solid black;
+// }

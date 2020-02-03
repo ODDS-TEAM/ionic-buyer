@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
+import { ActivityDetailPage } from './activity-detail/activity-detail.page';
 
 @Component({
   selector: 'app-activity',
@@ -12,14 +13,16 @@ export class ActivityPage implements OnInit {
   loading: HTMLIonLoadingElement;
 
   constructor(
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private modalController: ModalController,
   ) {}
 
   ngOnInit(): void {
     this.presentLoading()
-      .then(() => {
+      .then(loading => {
         // Normally call api and then dismiss
-        setTimeout(() => this.loading.dismiss(), 5000);
+        setTimeout(() => loading.dismiss(), 300);
+        this.openActivityModal(1);
     }).catch(err => {
       console.log(err);
     });
@@ -30,7 +33,21 @@ export class ActivityPage implements OnInit {
   }
 
   async openActivityModal(index: number) {
+    const modal = await this.modalController.create({
+      component: ActivityDetailPage,
+      componentProps: {
+        activityDetail: null
+      }
+    });
 
+    modal.onDidDismiss().then(res => {
+      // Do something after modal dismiss
+    }).catch(err => console.log(err))
+    .finally(() => {
+
+    });
+
+    await modal.present();
   }
 
   async presentLoading() {
@@ -39,7 +56,7 @@ export class ActivityPage implements OnInit {
       spinner: 'bubbles'
     });
     await loading.present();
-    this.loading = loading;
+    return loading;
   }
 
 }
