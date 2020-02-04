@@ -11,7 +11,7 @@
             slot="start"
             (click)="closeModal()"
             color="lightgray"
-            style="position: absolute; top: 8px; left: 8px; font-size: 32pt;"
+            style="position: absolute; top: 4px; left: 4px; font-size: 32pt;"
             name="close-circle"
           ></ion-icon>
           <ion-text color="darkgray">
@@ -25,11 +25,17 @@
         >
           your queue<br />
         </ion-text>
-        <ion-text class="queue-number" color="gprimary"> 99<br /> </ion-text>
+        <ion-text class="queue-number" color="gprimary">99<br /> </ion-text>
 
-        <ion-chip color="{{chipColor}}">
-          <ion-label style="font-size: 16pt;">{{ statusText }}</ion-label>
-        </ion-chip>
+        <ion-button
+          style="margin-top: 16px; height: 32px; --padding-start: 12px; --padding-end: 12px; --padding-top: 4px; --padding-bottom: 4px;"
+          shape="round"
+          color="{{chipColor}}"
+        >
+          <ion-label style="font-size: 12pt; font-weight: 400;"
+            >{{ statusText }}</ion-label
+          >
+        </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -38,7 +44,7 @@
   <ion-text color="lightgray" class="ion-padding" style="font-size: 8pt;">
     order ID : coesudchamsudfoodfudchamsudyudtood
   </ion-text>
-  <ion-list>
+  <ion-list style="margin-top: 8px;">
     <ion-list-header>
       <ion-label color="darkgray">Order</ion-label>
     </ion-list-header>
@@ -68,7 +74,7 @@
             <ion-text color="gray" class="option-text">เลย<br /></ion-text>
           </ion-col>
           <ion-col
-            style="padding-top: 5px;"
+            style="padding-top: 5px; overflow: visible; white-space: nowrap;"
             class="ion-text-left ion-no-padding"
             size="1.25"
           >
@@ -77,61 +83,27 @@
             </ion-text>
           </ion-col>
           <ion-col
-            style="padding-top: 5px;"
+            style="padding-top: 5px; overflow: scroll; white-space: nowrap;"
             class="ion-text-right ion-no-padding"
             size="2.25"
           >
             <ion-text color="darkgray" style="font-weight: bold;">
-              <span class="stretch">00,000</span>
+              <span class="stretch">0,000,000</span>
             </ion-text>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
+  </ion-list>
 
-    <ion-item class="ion-no-padding">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="3.5">
-            <ion-img
-              style="object-fit: cover; height: 80px;"
-              [src]="'https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/healthy-eating-ingredients-1296x728-header.jpg?w=1575'"
-            ></ion-img>
-          </ion-col>
-          <ion-col
-            style="padding-top: 5px !important; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"
-            size="5"
-          >
-            <ion-text color="darkgray" class="menu-text"
-              >อาหารอย่างนึง ชื่อยาวมาก</ion-text
-            ><br />
+  <!-- Payment method -->
+  <ion-list>
+    <ion-list-header>
+      <ion-label color="darkgray">Payment method</ion-label>
+    </ion-list-header>
 
-            <!-- Iterate options -->
-            <ion-text color="gray" class="option-text">ออปชัน<br /></ion-text>
-            <ion-text color="gray" class="option-text">เยอะแยะ<br /></ion-text>
-            <ion-text color="gray" class="option-text">ไปหมด<br /></ion-text>
-            <ion-text color="gray" class="option-text">เลย<br /></ion-text>
-          </ion-col>
-          <ion-col
-            style="padding-top: 5px;"
-            class="ion-text-left ion-no-padding"
-            size="1.25"
-          >
-            <ion-text color="darkgray">
-              <span class="stretch">3x</span>
-            </ion-text>
-          </ion-col>
-          <ion-col
-            style="padding-top: 5px;"
-            class="ion-text-right ion-no-padding"
-            size="2.25"
-          >
-            <ion-text color="darkgray" style="font-weight: bold;">
-              <span class="stretch">00,000</span>
-            </ion-text>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+    <ion-item class="ion-padding-start">
+      <ion-text color="gray">Cash</ion-text>
     </ion-item>
   </ion-list>
 
@@ -153,8 +125,8 @@
     <ion-label slot="start" color="darkgray">
       Total
     </ion-label>
-    <ion-label slot="end" color="gprimary">
-      80
+    <ion-label slot="end" color="gprimary" style="font-size: 14pt;">
+      <span class="stretch">80</span>
     </ion-label>
   </ion-toolbar>
 </ion-content>

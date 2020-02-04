@@ -8,7 +8,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class ActivityDetailPage implements OnInit {
 
-  chipColor = 'successgreen';
+  chipColor = 'gprimary';
   statusText = 'Cooking done';
 
   constructor(
