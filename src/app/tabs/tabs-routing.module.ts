@@ -40,14 +40,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/main/home',
+        redirectTo: '/main/activity',
         pathMatch: 'full'
       }
     ],
   },
   {
     path: '',
-    redirectTo: '/main/home',
+    redirectTo: '/main/activity',
     pathMatch: 'full',
   }
 ];
