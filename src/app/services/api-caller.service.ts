@@ -4,6 +4,7 @@ import { WeekMenu } from '../shared/models/WeekMenus.model.js';
 import { DayMenus } from '../shared/models/DayMenus.model.js';
 import { BasketService } from './basket.service.js';
 import { Basket } from '../shared/models/Basket.model.js';
+import { FoodDetail } from '../shared/models/FoodDetail.model.js';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class ApiCallerService {
   WEEK_URL = `${this.FOOD_URL}/week`;
   TODAY_URL = `${this.FOOD_URL}/today`;
   ORDER_URL = `${this.FOOD_URL}/order`;
+  FOODDETAIL_URL = `${this.FOOD_URL}/option`;
 
   constructor(
     private http: HttpClient,
@@ -118,6 +120,20 @@ export class ApiCallerService {
       this.http.request('POST', this.ORDER_URL, {
         observe: 'response',
         body: basket
+      }).subscribe(
+        res => {
+          resolve(res.body);
+        }, err => {
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getFoodDetail(foodId: string) {
+    return new Promise((resolve, reject) => {
+      this.http.request<FoodDetail>('GET', `${this.FOODDETAIL_URL}/${foodId}`, {
+        observe: 'response'
       }).subscribe(
         res => {
           resolve(res.body);

@@ -27,10 +27,22 @@ export class BasketPage implements OnInit {
 
   ngOnInit() {
     this.basket = this.basketService.getBasket();
+    this.updatePrice();
+  }
+
+  updatePrice() {
+    if (this.basket.items.length === 0) {
+      this.modalController.dismiss();
+    }
     this.totalPrice = 0;
     for (const item of this.basket.items) {
       this.totalPrice += item.price * item.numberOfItem;
     }
+  }
+
+  removeItem(index: number) {
+    this.basketService.removeBasketItem(index);
+    this.updatePrice();
   }
 
   cancelModal() {

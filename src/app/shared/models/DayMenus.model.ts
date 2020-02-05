@@ -1,12 +1,10 @@
-import { FoodMenus } from './FoodMenus.model';
-
 export class DayMenus {
     merchantId: string;
     restaurantName: string;
     menus: Menu[];
 }
 
-class Menu {
+export class Menu {
     // tslint:disable-next-line: variable-name
     _id: string;
     day: string;

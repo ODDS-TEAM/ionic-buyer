@@ -27,7 +27,7 @@
 
     <ion-item
       *ngFor="let menu of restaurant.menus; let m=index"
-      (click)="onPressMenu(r, m)"
+      (click)="goToFoodOption(r, m)"
       class="ion-padding-end"
     >
       <ion-img

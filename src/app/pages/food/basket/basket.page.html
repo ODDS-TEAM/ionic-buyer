@@ -19,41 +19,53 @@
       </p>
     </ion-list-header>
 
-    <ion-item *ngFor="let item of basket.items; let i=index">
-      <ion-grid>
-        <ion-row>
-          <ion-col style="height: 100%;" size="4">
-            <ion-img
-              class="ion-margin-top ion-margin-bottom"
-              style="object-fit: cover; height: 80px;"
-              [src]="item.imageUrl"
-            ></ion-img>
-          </ion-col>
-          <ion-col class="ion-padding-start" size="5">
-            <ion-text class="menu-text">{{ item.foodName }}</ion-text>
-            <br />
-            <ion-text *ngFor="let option of item.options" class="describe-text"
-              >{{ option }}<br
-            /></ion-text>
-          </ion-col>
-          <ion-col size="1">
-            <ion-text class="multipler-text">{{ item.numberOfItem }}x</ion-text>
-          </ion-col>
-          <ion-col size="1">
-            <ion-text style="font-weight: 700;" class="price-text"
-              >{{ item.numberOfItem * item.price }}</ion-text
-            >
-            <ion-button
-              style="position: absolute; right: 0; bottom: 0;"
-              color="lightgray"
-              size="small"
-              class="edit-button"
-              >edit</ion-button
-            >
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+    <ion-item-sliding *ngFor="let item of basket.items; let i=index">
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col style="height: 100%;" size="4">
+              <ion-img
+                class="ion-margin-top ion-margin-bottom"
+                style="object-fit: cover; height: 80px;"
+                [src]="item.imageUrl"
+              ></ion-img>
+            </ion-col>
+            <ion-col class="ion-padding-start" size="4">
+              <ion-text class="menu-text">{{ item.foodName }}</ion-text>
+              <br />
+              <ion-text
+                *ngFor="let option of item.options"
+                class="describe-text"
+                >{{ option }}<br
+              /></ion-text>
+            </ion-col>
+            <ion-col size="1.5" class="ion-text-right">
+              <ion-text class="multipler-text"
+                >{{ item.numberOfItem }}x</ion-text
+              >
+            </ion-col>
+            <ion-col size="1.5" class="ion-text-right">
+              <ion-text style="font-weight: 700;" class="price-text"
+                >{{ item.numberOfItem * item.price }}</ion-text
+              >
+              <ion-button
+                style="position: absolute; right: 0; bottom: 0;"
+                color="lightgray"
+                size="small"
+                class="edit-button"
+              >
+                edit
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="brownred" (click)="removeItem(i)">
+          <ion-icon slot="icon-only" name="ios-trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
   <ion-list>

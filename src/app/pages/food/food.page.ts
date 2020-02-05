@@ -6,7 +6,6 @@ import { OverlayEventDetail } from '@ionic/core';
 import { BasketPage } from './basket/basket.page';
 import { DayMenus } from 'src/app/shared/models/DayMenus.model';
 import { ApiCallerService } from 'src/app/services/api-caller.service';
-import { StorageService } from 'src/app/services/storage.service';
 import { BasketItem } from 'src/app/shared/models/Basket.model';
 import { BasketService } from 'src/app/services/basket.service';
 
@@ -48,7 +47,6 @@ export class FoodPage implements OnInit {
           this.isLoading = false;
         });
     }).catch(err => console.log(err));
-    // this.goToFoodOption();
     // this.goToBasketView();
   }
 
@@ -61,9 +59,27 @@ export class FoodPage implements OnInit {
     return loading;
   }
 
-  async goToFoodOption() {
+  async goToFoodOption(restaurantIndex: number, menuIndex: number) {
+    const restaurant = this.dayMenus[restaurantIndex];
+    const merchantId = restaurant.merchantId;
+    const restaurantName = restaurant.restaurantName;
+    const menu = restaurant.menus[menuIndex];
+
+    const loading = await this.loadingController.create({
+      spinner: 'bubbles'
+    });
+    await loading.present();
+
+    const foodDetail = await this.api.getFoodDetail('5e2acbbd62ba053e15f58056');
+
     const modal = await this.modalController.create({
-      component: OptionsPage
+      component: OptionsPage,
+      componentProps: {
+        foodDetail,
+        menu,
+        merchantId,
+        restaurantName,
+      }
     });
 
     modal.onDidDismiss().then((detail: OverlayEventDetail) => {
@@ -71,6 +87,8 @@ export class FoodPage implements OnInit {
         return;
       }
     });
+
+    await loading.dismiss();
 
     await modal.present();
   }

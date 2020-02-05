@@ -5,89 +5,77 @@
       (click)="cancelModal()"
       name="ios-close-circle"
     ></ion-icon>
-    <ion-img style="object-fit:cover; width: auto; height: 100%;" [src]="'../../../../assets/images/hamburger.jpg'"></ion-img>
+    <ion-img
+      style="object-fit:cover; width: auto; height: 100%;"
+      [src]="foodDetail.imageUrl"
+    ></ion-img>
   </div>
   <ion-grid class="ion-padding-start container">
     <ion-row style="height: 100%;" class="ion-align-items-center">
       <ion-col size="12" class="ion-padding-start ion-padding-end">
-        <ion-text color="darkgray" class="food-text">หมายิ้ม - ลุงธี</ion-text>
-        <ion-text style="float: right;" color="darkgray" class="price-text">65</ion-text><br>
-        <ion-text color="darkgray" class="describe-text">เป็นหมาที่มีความสุขที่สุดในโลก</ion-text>
+        <ion-text color="darkgray" class="food-text"
+          >{{ foodDetail.foodName }} - {{ restaurantName }}</ion-text
+        >
+        <ion-text style="float: right;" color="darkgray" class="price-text"
+          >{{ foodDetail.price }}</ion-text
+        ><br />
+        <ion-text color="darkgray" class="describe-text"
+          >{{ foodDetail.description }}</ion-text
+        >
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-list>
-    <ion-radio-group>
+  <!-- Iterate Options -->
+  <div *ngFor="let option of foodDetail.options; let o=index">
+
+    <!-- Radio -->
+    <ion-list *ngIf="option.singleChoice">
       <ion-list-header>
-        เพิ่มเครื่อง
+        {{ option.titleOption }}
       </ion-list-header>
 
-      <ion-item>
-        <ion-radio
-          color="gprimary"
-          mode="md"
-          slot="start"
-          value="smiling"
-        ></ion-radio>
-        <ion-label
-          style="white-space: normal; overflow: visible; font-size: 10pt; width: 70%;"
-          >ยิ้มแบบมีความสุขที่สุดในโลก</ion-label
-        >
-        <p class="ion-padding-end addition-price-text">+10</p>
-      </ion-item>
+      <!-- Iterate Choice -->
+      <ion-radio-group >
+        <ion-item *ngFor="let choice of option.choices; let c=index">
+          <ion-radio
+            color="gprimary"
+            mode="md"
+            slot="start"
+            value="{{this.c}}"
+            (ionSelect)="onRadioButtonChange($event, o, c)"
+          ></ion-radio>
+          <ion-label
+            style="white-space: normal; overflow: visible; font-size: 10pt; width: 70%;"
+            >{{ choice.titleChoice }}</ion-label
+          >
+          <ion-text class="ion-padding-end addition-price-text">+{{ choice.priceChoice }}</ion-text>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
 
-      <ion-item>
-        <ion-radio
-          color="gprimary"
-          mode="md"
-          slot="start"
-          value="evil_smiling"
-        ></ion-radio>
-        <ion-label
-          style="white-space: normal; overflow: visible; font-size: 10pt; width: 70%;"
-          >ยิ้มแบบมีเลศนัย</ion-label
-        >
-        <p class="ion-padding-end addition-price-text">+3</p>
-      </ion-item>
-    </ion-radio-group>
-  </ion-list>
+    <!-- Checkbox -->
+    <ion-list>
+        <ion-list-header>
+          {{ option.titleOption }}
+        </ion-list-header>
 
-  <ion-list>
-    <ion-radio-group>
-      <ion-list-header>
-        เลือกชนิด
-      </ion-list-header>
-
-      <ion-item>
-        <ion-checkbox
-          color="gprimary"
-          mode="md"
-          slot="start"
-          value="smiling"
-        ></ion-checkbox>
-        <ion-label
-          style="white-space: normal; overflow: visible; font-size: 10pt; width: 70%;"
-          >ยิ้มแบบมีความสุขที่สุดในโลก</ion-label
-        >
-        <p class="ion-padding-end addition-price-text">+10</p>
-      </ion-item>
-
-      <ion-item>
-        <ion-checkbox
-          color="gprimary"
-          mode="md"
-          slot="start"
-          value="evil_smiling"
-        ></ion-checkbox>
-        <ion-label
-          style="white-space: normal; overflow: visible; font-size: 10pt; width: 70%;"
-          >ยิ้มแบบมีเลศนัย</ion-label
-        >
-        <p class="ion-padding-end addition-price-text">+3</p>
-      </ion-item>
-    </ion-radio-group>
-  </ion-list>
+        <ion-item *ngFor="let choice of option.choices; let c=index">
+          <ion-checkbox
+            color="gprimary"
+            mode="md"
+            slot="start"
+            value="{{this.c}}"
+            (ionChange)="onPressCheckbox($event, o, c)"
+          ></ion-checkbox>
+          <ion-label
+            style="white-space: normal; overflow: visible; font-size: 10pt; width: 70%;"
+            >{{ choice.titleChoice }}</ion-label
+          >
+          <ion-text class="ion-padding-end addition-price-text">+{{ choice.priceChoice }}</ion-text>
+        </ion-item>
+    </ion-list>
+  </div>
 
   <ion-grid class="ion-padding ion-text-center number-container">
     <ion-row class="ion-align-items-center">
@@ -116,13 +104,14 @@
   </ion-grid>
 
   <div class="ion-padding addition-container">
-    <form>
+    <form [formGroup]="fg">
       <ion-label>เพิ่มเติม</ion-label>
       <ion-textarea
         class="ion-margin-top ion-margin-bottom"
         type="text"
         autoGrow="true"
         scroll="false"
+        formControlName="specialInstruction"
       ></ion-textarea>
     </form>
   </div>
@@ -143,13 +132,15 @@
         </ion-text>
       </ion-col>
       <ion-col size="3" class="ion-padding-end ion-text-right">
-          <ion-text class="total-price-text">
-            {{ totalPrice }}
+        <ion-text class="total-price-text">
+          {{ totalPrice }}
         </ion-text>
-
       </ion-col>
       <ion-col size="6" class="ion-padding-end ion-justify-content-center">
-        <ion-button (click)="addToBasket()" color="gprimary" class="footer-button"
+        <ion-button
+          (click)="onPressAddToBasket()"
+          color="gprimary"
+          class="footer-button"
           >Add to basket</ion-button
         >
       </ion-col>
