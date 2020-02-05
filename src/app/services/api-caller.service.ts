@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { WeekMenu } from '../shared/models/WeekMenus.model.js';
 import { DayMenus } from '../shared/models/DayMenus.model.js';
-import { BasketService } from './basket.service.js';
 import { Basket } from '../shared/models/Basket.model.js';
 import { FoodDetail } from '../shared/models/FoodDetail.model.js';
+import { StorageService } from './storage.service.js';
+import { Activity } from '../shared/models/Activity.model.js';
+import { ActivityDetail } from '../shared/models/ActivityDetail.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +19,11 @@ export class ApiCallerService {
   TODAY_URL = `${this.FOOD_URL}/today`;
   ORDER_URL = `${this.FOOD_URL}/order`;
   FOODDETAIL_URL = `${this.FOOD_URL}/option`;
+  ACTIVITY_URL = `${this.WEB_SERVICE_URL}/customer/activity`;
 
   constructor(
     private http: HttpClient,
+    private storage: StorageService
   ) { }
 
   getWeekLunchImage() {
@@ -133,6 +137,39 @@ export class ApiCallerService {
   getFoodDetail(foodId: string) {
     return new Promise((resolve, reject) => {
       this.http.request<FoodDetail>('GET', `${this.FOODDETAIL_URL}/${foodId}`, {
+        observe: 'response'
+      }).subscribe(
+        res => {
+          resolve(res.body);
+        }, err => {
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getActivityList(): Promise<Activity[]> {
+    return new Promise((resolve, reject) => {
+      this.storage.getUserInfo().then(user => {
+        this.http.request<Activity[]>('GET', `${this.ACTIVITY_URL}/${user.uid}`, {
+          observe: 'response'
+        }).subscribe(
+          res => {
+            resolve(res.body);
+          }, err => {
+            if (err.status === 401) {
+              resolve([]);
+            }
+            reject(err);
+          }
+        );
+      }).catch(err => console.log(err));
+    });
+  }
+
+  getActivityDetail(activityId: string): Promise<ActivityDetail> {
+    return new Promise((resolve, reject) => {
+      this.http.request<ActivityDetail>('GET', `${this.ACTIVITY_URL}/detail/${activityId}`, {
         observe: 'response'
       }).subscribe(
         res => {

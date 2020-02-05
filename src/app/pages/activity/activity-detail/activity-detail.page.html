@@ -11,29 +11,33 @@
             slot="start"
             (click)="closeModal()"
             color="lightgray"
-            style="position: absolute; top: 4px; left: 4px; font-size: 32pt;"
+            style="position: absolute; top: 4px; left: 4px; font-size: 28pt;"
             name="close-circle"
           ></ion-icon>
           <ion-text color="darkgray">
-            <h3>ชื่อร้านค้าตัวใหญ่ ๆ</h3>
+            <h3>{{ activityDetail.merchantName }}</h3>
           </ion-text>
         </ion-toolbar>
         <ion-text
+          *ngIf="activityDetail.queue != -1"
           class="ion-margin-top"
           color="lightgray"
           style="font-size: smaller;"
         >
-          your queue<br />
+        Your queue<br />
         </ion-text>
-        <ion-text class="queue-number" color="gprimary">99<br /> </ion-text>
+        <ion-text *ngIf="activityDetail.queue != -1" class="queue-number" color="gprimary">{{ activityDetail.queue }}<br /> </ion-text>
+        <ion-icon *ngIf="activityDetail.queue == -1" class="queue-number" color="waitinggray" stlye="font-size: 40pt" name="md-time"></ion-icon><br />
+        <ion-text *ngIf="activityDetail.queue == -1" style="font-size: smaller;" color="lightgray">Please wait for merchant confirmation</ion-text>
 
         <ion-button
+          *ngIf="activityDetail.queue != -1"
           style="margin-top: 16px; height: 32px; --padding-start: 12px; --padding-end: 12px; --padding-top: 4px; --padding-bottom: 4px;"
           shape="round"
-          color="{{chipColor}}"
+          color="{{ getBadgeColor(activityDetail.state) }}"
         >
           <ion-label style="font-size: 12pt; font-weight: 400;"
-            >{{ statusText }}</ion-label
+            >{{ getBadgeText(activityDetail.state) }}</ion-label
           >
         </ion-button>
       </ion-col>
@@ -42,36 +46,33 @@
 
   <!-- Order list -->
   <ion-text color="lightgray" class="ion-padding" style="font-size: 8pt;">
-    order ID : coesudchamsudfoodfudchamsudyudtood
+    order ID : {{ activityDetail._id }}
   </ion-text>
-  <ion-list style="margin-top: 8px;">
-    <ion-list-header>
+  <ion-list class="ion-padding-bottom" style="margin-top: 8px;">
+    <ion-list-header style="padding-left: 26pt !important;">
       <ion-label color="darkgray">Order</ion-label>
     </ion-list-header>
 
     <!-- Iterate items -->
-    <ion-item class="ion-no-padding">
+    <ion-item style="padding-right: 8px;" *ngFor="let item of activityDetail.items">
       <ion-grid>
         <ion-row>
           <ion-col size="3.5">
             <ion-img
               style="object-fit: cover; height: 80px;"
-              [src]="'https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/healthy-eating-ingredients-1296x728-header.jpg?w=1575'"
+              [src]="item.imageUrl"
             ></ion-img>
           </ion-col>
           <ion-col
-            style="padding-top: 5px !important; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"
+            style="padding-left: 16px; padding-top: 5px !important; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"
             size="5"
           >
             <ion-text color="darkgray" class="menu-text"
-              >อาหารอย่างนึง ชื่อยาวมาก</ion-text
+              >{{ item.foodName }}</ion-text
             ><br />
 
             <!-- Iterate options -->
-            <ion-text color="gray" class="option-text">ออปชัน<br /></ion-text>
-            <ion-text color="gray" class="option-text">เยอะแยะ<br /></ion-text>
-            <ion-text color="gray" class="option-text">ไปหมด<br /></ion-text>
-            <ion-text color="gray" class="option-text">เลย<br /></ion-text>
+            <ion-text *ngFor="let option of item.options" color="gray" class="option-text">{{ option }}<br /></ion-text>
           </ion-col>
           <ion-col
             style="padding-top: 5px; overflow: visible; white-space: nowrap;"
@@ -79,7 +80,7 @@
             size="1.25"
           >
             <ion-text color="darkgray">
-              <span class="stretch">3x</span>
+              <span class="stretch">{{ item.numberOfItem }}x</span>
             </ion-text>
           </ion-col>
           <ion-col
@@ -88,7 +89,7 @@
             size="2.25"
           >
             <ion-text color="darkgray" style="font-weight: bold;">
-              <span class="stretch">0,000,000</span>
+              <span class="stretch">{{ item.price }} ฿</span>
             </ion-text>
           </ion-col>
         </ion-row>
@@ -97,36 +98,25 @@
   </ion-list>
 
   <!-- Payment method -->
-  <ion-list>
-    <ion-list-header>
+  <ion-list class="ion-padding-bottom">
+    <ion-list-header style="padding-left: 26pt !important;">
       <ion-label color="darkgray">Payment method</ion-label>
     </ion-list-header>
 
-    <ion-item class="ion-padding-start">
-      <ion-text color="gray">Cash</ion-text>
-    </ion-item>
-  </ion-list>
-
-  <!-- Payment method -->
-  <ion-list>
-    <ion-list-header>
-      <ion-label color="darkgray">Payment method</ion-label>
-    </ion-list-header>
-
-    <ion-item class="ion-padding-start">
+    <ion-item style="padding-left: 36pt !important;">
       <ion-text color="gray">Cash</ion-text>
     </ion-item>
   </ion-list>
 
   <!-- Total price -->
   <ion-toolbar
-    style="--min-height: 72px; --padding-start: 16px; --padding-end: 16px;"
+    style="--min-height: 72px; --padding-start: 26px; --padding-end: 26px;"
   >
     <ion-label slot="start" color="darkgray">
       Total
     </ion-label>
-    <ion-label slot="end" color="gprimary" style="font-size: 14pt;">
-      <span class="stretch">80</span>
+    <ion-label slot="end" color="gprimary">
+      <span style="font-size: 16pt;" class="stretch">{{ totalPrice }}</span><ion-text color="darkgray"> ฿</ion-text>
     </ion-label>
   </ion-toolbar>
 </ion-content>

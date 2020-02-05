@@ -26,16 +26,17 @@
     >
     </ion-refresher-content>
   </ion-refresher>
-  <ion-toolbar class="ion-text-center" color="whitegray">
+  <ion-toolbar *ngIf="activityList.length === 0" class="ion-text-center" color="whitegray">
     <ion-text color="darkgray"
-      >{{ isLoading ? 'Loading...' : 'No order now' }}</ion-text
+      >{{ isLoading ? 'No order now' : 'Loading...' }}</ion-text
     >
   </ion-toolbar>
-  <ion-list class="ion-no-margin">
+  <ion-list class="ion-no-margin ion-padding-top">
 
     <!-- Iteration item -->
     <ion-item
-      (click)="openActivityModal(1)"
+      *ngFor="let activity of activityList; let i=index;"
+      (click)="openActivityModal(i)"
       style="margin-bottom: 8px;"
       class="ion-no-padding"
     >
@@ -56,16 +57,16 @@
             style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
           >
             <ion-text color="darkgray" style="font-weight: bold;">
-              ชื่อคนขายยาวมากไม่รู้จะยาวไปไหน
+              {{ activity.merchantName }}
             </ion-text>
             <br />
           </ion-col>
-          <ion-col size="6" class="ion-text-center">
+          <ion-col size="6" class="ion-text-right">
             <ion-badge
-              color="waitinggray"
+              color="{{ getBadgeColor(activity.state) }}"
               style="margin-top: auto; margin-bottom: auto;"
             >
-              Waiting for confirmation
+              {{ getBadgeText(activity.state) }}
             </ion-badge>
           </ion-col>
         </ion-row>

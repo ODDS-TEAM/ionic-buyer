@@ -29,6 +29,7 @@
       *ngFor="let menu of restaurant.menus; let m=index"
       (click)="goToFoodOption(r, m)"
       class="ion-padding-end"
+      [disabled]="menu.foodLeft === 0"
     >
       <ion-img
         class="ion-margin-top ion-margin-bottom"
