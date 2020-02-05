@@ -170,7 +170,7 @@ export class OptionsPage implements OnInit {
     message: string,
     cancelText: string,
     okText: string,
-    changeMerchant: boolean
+    newBasket: boolean
     ) {
 
     const alert = await this.alertController.create({
@@ -186,7 +186,7 @@ export class OptionsPage implements OnInit {
         }, {
           text: okText,
           handler: async () => {
-            if (changeMerchant) {
+            if (newBasket) {
               await this.basketService.newBasket();
               this.basketService.setCurrentMerchant(this.merchantId, this.restaurantName);
             }

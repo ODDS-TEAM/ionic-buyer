@@ -15,10 +15,16 @@ export class BasketService {
   }
 
   getNumberOfItem() {
+    if (!this.basket) {
+      return 0;
+    }
     return this.basket.items.length;
   }
 
   hasItem() {
+    if (!this.basket) {
+      return false;
+    }
     return this.basket.items.length !== 0;
   }
 
@@ -27,6 +33,9 @@ export class BasketService {
   }
 
   getBasketItem(index: number) {
+    if (!this.basket) {
+      return null;
+    }
     return this.basket[index];
   }
 
@@ -61,6 +70,9 @@ export class BasketService {
   }
 
   isSameMerchant(merchantId: string) {
+    if (!this.basket) {
+      return false;
+    }
     return merchantId === this.basket.merchantId;
   }
 

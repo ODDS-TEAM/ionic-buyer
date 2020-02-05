@@ -70,7 +70,7 @@ export class FoodPage implements OnInit {
     });
     await loading.present();
 
-    const foodDetail = await this.api.getFoodDetail('5e2acbbd62ba053e15f58056');
+    const foodDetail = await this.api.getFoodDetail(menu.foodMenuId);
 
     const modal = await this.modalController.create({
       component: OptionsPage,

@@ -4,6 +4,7 @@ import { MailCredentials } from '../shared/models/MailCredentials.model';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../shared/models/User.model';
 import { BehaviorSubject } from 'rxjs';
+import { BasketService } from './basket.service';
 
 @Injectable({
   providedIn: 'root'
@@ -42,8 +43,8 @@ export class AuthService {
   }
 
   saveProfile(user: User, mailCredentials: MailCredentials) {
-    this.storageService.setUserInfo(user);
     this.storageService.setCredentialsInfo(mailCredentials);
+    this.storageService.setUserInfo(user);
   }
 
   login(credentials: MailCredentials) {
