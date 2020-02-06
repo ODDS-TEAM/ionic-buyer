@@ -2,12 +2,22 @@
 
 .menu-text {
     font-family: helvetica;
-    margin-top: 0px;
     font-size: 10pt;
     font-weight: 700;
 }
 
 .price-text {
     font-family: Helvetica;
-    float: right;
 }
+
+ion-item {
+    --inner-border-width: 0 0 0.1px 0 ;
+}
+
+ion-list-header {
+    font-weight: 700;
+    font-size: 12pt;
+    letter-spacing: normal;
+    font-family: helvetica !important;
+    text-transform: none;
+  }
