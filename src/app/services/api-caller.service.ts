@@ -13,7 +13,7 @@ import { ActivityDetail } from '../shared/models/ActivityDetail.model';
 })
 export class ApiCallerService {
 
-  WEB_SERVICE_URL = `http://103.74.254.74:3000`;
+  WEB_SERVICE_URL = `https://desolate-dusk-25447.herokuapp.com`;
   FOOD_URL = `${this.WEB_SERVICE_URL}/customer/food`;
   WEEK_URL = `${this.FOOD_URL}/week`;
   TODAY_URL = `${this.FOOD_URL}/today`;

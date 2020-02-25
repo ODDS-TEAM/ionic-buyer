@@ -11,7 +11,7 @@ import { BasketService } from './basket.service';
 })
 export class AuthService {
 
-  private URL = 'http://103.74.254.74:3000';
+  private URL = 'https://desolate-dusk-25447.herokuapp.com';
 
   private loggedIn = false;
 
@@ -85,9 +85,13 @@ export class AuthService {
   }
 
   signOut() {
-    this.storageService.emptyCredentialsInfo()
-      .then(res => console.log(res)).catch(err => console.log(err));
-    this.authenticationState.next(false);
+    return new Promise((resolve, reject) => {
+      this.storageService.emptyCredentialsInfo()
+        .then(res => {
+          this.authenticationState.next(false);
+          resolve(res);
+        }).catch(err => reject(err));
+    });
   }
 
   fetchAPI(method: string, path: string, body: any) {

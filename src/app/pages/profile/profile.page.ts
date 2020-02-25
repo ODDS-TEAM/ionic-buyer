@@ -15,8 +15,9 @@ export class ProfilePage {
   ) {}
 
   onPressSignOut() {
-    this.authService.signOut();
-    this.router.navigate(['/'], { replaceUrl: true });
+    this.authService.signOut().then(() => {
+      this.router.navigate(['/login'], { replaceUrl: true });
+    });
   }
 
 }
