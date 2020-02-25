@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.kin.kao.customer",
-  "appName": "Kin Kao Customer",
+  "appName": "Kin Kao",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
