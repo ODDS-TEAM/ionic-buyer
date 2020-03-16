@@ -1,3 +1,60 @@
-<ion-content>
-    <ion-button color="primary" (click)="onPressSignOut()">Sign out</ion-button>
+<ion-content class="two-tone-bg">
+    <div style="background-color: var(--ion-color-gprimary-background); height: 216px;"></div>
+    <ion-grid class="ion-no-padding">
+        <ion-row class="ion-no-padding">
+            <ion-col class="ion-align-content-center ion-no-padding" style="height: 20vw; overflow: visible;" size="12">
+                <ion-avatar (click)="onPressProfilePicture()" class="profile-avatar" style="background-color: gray; width: 40vw; height: 40vw; margin-left: auto; margin-right: auto;">
+                    <ion-img [src]="selectImageUrl"></ion-img>
+                </ion-avatar>
+            </ion-col>
+        </ion-row>
+        <ion-row style="height: 1.5rem;">
+            <ion-col style="height: 1.5rem;" class="ion-text-right" *ngIf="!editMode">
+                <ion-button style="max-height: 1.5rem; font-size: smaller;" (click)="onClickEditProfile()" color="gprimary" fill="clear" shape="round">
+                    Edit profile <ion-icon slot="end" style="font-size: smaller;" name="md-create"></ion-icon>
+                </ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+            <ion-col>
+                <ion-list class="ion-padding-horizontal">
+                    <ion-item>
+                        <ion-label position="stacked" color="gprimary">Display name</ion-label>
+                        <ion-input
+                            [readonly]="!editMode"
+                            [class.edit-mode]="editMode"
+                            inputmode="text"
+                            type="text"
+                            [formControl]="displayNameFormControl"
+                        ></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked" color="gprimary">Email</ion-label>
+                        <ion-input
+                            [readonly]="!editMode"
+                            [class.edit-mode]="editMode"
+                            inputmode="text"
+                            type="text"
+                            [formControl]="emailFormControl"
+                        ></ion-input>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="ion-text-center" *ngIf="editMode">
+                <ion-button [disabled]="!(displayNameFormControl.valid && emailFormControl.valid)" (click)="onClickUpdateProfile()" color="gprimary" fill="outline" shape="round">
+                    Update profile
+                </ion-button>
+                <ion-button (click)="onClickCancel()" color="medium" fill="outline" shape="round">
+                    Cancel
+                </ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="!editMode">
+            <ion-col class="ion-text-center" size="12">
+                <ion-button class="gradient-button" shape="round" (click)="onPressSignOut()">Sign out</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
