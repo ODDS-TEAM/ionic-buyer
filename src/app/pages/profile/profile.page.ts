@@ -71,12 +71,11 @@ export class ProfilePage implements OnInit {
     this.emailFormControl = new FormControl('', [Validators.email, Validators.required]);
   }
 
-  async onPressProfilePicture() {
-    const image = await Camera.getPhoto({
-      resultType: CameraResultType.DataUrl,
-    });
-
-    this.selectImageUrl = image.dataUrl;
+  onPressProfilePicture() {
+    if (!this.editMode) {
+      return;
+    }
+    this.selectImage();
   }
 
   onClickEditProfile() {
@@ -127,6 +126,14 @@ export class ProfilePage implements OnInit {
     }
 
     return new Blob([ab], { type: mimeType });
+  }
+
+  async selectImage() {
+    const image = await Camera.getPhoto({
+      resultType: CameraResultType.DataUrl,
+    });
+
+    this.selectImageUrl = image.dataUrl;
   }
 
   async presentLoading() {
