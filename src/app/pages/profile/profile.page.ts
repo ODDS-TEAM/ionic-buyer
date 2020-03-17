@@ -29,6 +29,8 @@ export class ProfilePage implements OnInit {
 
   selectImageUrl: string;
 
+  changeImage = false;
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -58,6 +60,7 @@ export class ProfilePage implements OnInit {
           this.displayNameFromApi = user.displayName;
           this.emailFromApi = user.email;
           this.selectImageUrl = user.imageUrl;
+          this.changeImage = false;
           resolve();
         }, err => {
           reject(err);
@@ -86,8 +89,10 @@ export class ProfilePage implements OnInit {
     const loading = await this.presentLoading();
     try {
       const user = await this.profileService.updateProfile(this.displayNameFormControl.value, this.emailFormControl.value);
-      const imgBlob = this.base64toBlob(this.selectImageUrl);
-      await this.profileService.uploadProfilePicture(imgBlob);
+      if (this.changeImage) {
+        const imgBlob = this.base64toBlob(this.selectImageUrl);
+        await this.profileService.uploadProfilePicture(imgBlob);
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -134,6 +139,7 @@ export class ProfilePage implements OnInit {
     });
 
     this.selectImageUrl = image.dataUrl;
+    this.changeImage = true;
   }
 
   async presentLoading() {
