@@ -22,6 +22,11 @@ export class ActivityDetailPage implements OnInit {
     // setTimeout(() => this.modalController.dismiss(), 3000);
   }
 
+  toThaiTime(date) {
+    console.log(typeof(date));
+    console.log(date);
+  }
+
   closeModal() {
     this.modalController.dismiss();
   }

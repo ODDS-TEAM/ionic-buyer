@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiCallerService } from 'src/app/services/api-caller.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -15,14 +16,20 @@ export class HomePage implements OnInit {
 
   constructor(
     private router: Router,
-    private apiCaller: ApiCallerService
+    private apiCaller: ApiCallerService,
+    private storage: StorageService
   ) {}
 
-  ngOnInit(): void {
-    this.username = 'Teema';
+  async ngOnInit() {
+    this.getDisplayName();
     this.apiCaller.getWeekLunchImage().then((res: any) => {
       this.lunchThisWeekImg = res;
     });
+  }
+
+  async getDisplayName() {
+    const userInfo = await this.storage.getUserInfo();
+    this.username = userInfo.displayName;
   }
 
   goToFood() {

@@ -49,8 +49,9 @@
     order ID : {{ activityDetail._id }}
   </ion-text>
   <ion-list class="ion-padding-bottom" style="margin-top: 8px;">
-    <ion-list-header style="padding-left: 26pt !important;">
+    <ion-list-header style="padding-left: 26px !important; padding-right: 26px;">
       <ion-label color="darkgray">Order</ion-label>
+      <ion-label color="lightgray" style="font-size: smaller; font-weight: normal;">{{ activityDetail.dateTime | timeAgoThai }}</ion-label>
     </ion-list-header>
 
     <!-- Iterate items -->
@@ -89,7 +90,7 @@
             size="2.25"
           >
             <ion-text color="darkgray" style="font-weight: bold;">
-              <span class="stretch">{{ item.price }} ฿</span>
+              <span class="stretch">{{ item.price }}฿</span>
             </ion-text>
           </ion-col>
         </ion-row>

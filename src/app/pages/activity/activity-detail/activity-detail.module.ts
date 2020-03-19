@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ActivityDetailPage } from './activity-detail.page';
+import { TimeAgoThaiPipe } from 'src/app/pipes/timeAgoThai/time-ago-thai.pipe';
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import { ActivityDetailPage } from './activity-detail.page';
     FormsModule,
     IonicModule,
   ],
-  declarations: [ActivityDetailPage],
+  declarations: [ActivityDetailPage, TimeAgoThaiPipe],
   entryComponents: [ActivityDetailPage]
 })
 export class ActivityDetailPageModule {}
