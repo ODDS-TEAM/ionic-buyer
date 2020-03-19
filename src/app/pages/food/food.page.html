@@ -47,13 +47,15 @@
               >{{ menu.menuName }}</ion-text
             >
           </ion-col>
-          <ion-col size="2">
+          <ion-col class="ion-text-right" size="2">
             <ion-text color="darkgray" class="price-text"
-              >{{ menu.price }}</ion-text
+            >{{ menu.price }}฿</ion-text
             >
+            <br>
           </ion-col>
         </ion-row>
       </ion-grid>
+      <ion-text color="darkgray" style="position: absolute; right: 2rem; bottom: 1rem; font-size: smaller;">จำนวนที่เหลือ: {{ menu.foodLeft }}</ion-text>
     </ion-item>
   </ion-list>
 
