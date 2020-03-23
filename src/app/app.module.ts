@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
 
+import { TimeAgoThaiPipeModule } from './pipes/timeAgoThai/time-ago-thai.pipe.module';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -22,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     }),
     AppRoutingModule,
     IonicStorageModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     StatusBar,

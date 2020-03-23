@@ -3,6 +3,7 @@ import { LoadingController, ModalController } from '@ionic/angular';
 import { ActivityDetailPage } from './activity-detail/activity-detail.page';
 import { ApiCallerService } from 'src/app/services/api-caller.service';
 import { Activity } from 'src/app/shared/models/Activity.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-activity',
@@ -19,7 +20,8 @@ export class ActivityPage implements OnInit {
   constructor(
     private loadingController: LoadingController,
     private modalController: ModalController,
-    private api: ApiCallerService
+    private api: ApiCallerService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +30,14 @@ export class ActivityPage implements OnInit {
         loading.dismiss();
       });
     });
+  }
+
+  onPressHistoryButton() {
+    this.routeToHistoryPage();
+  }
+
+  routeToHistoryPage() {
+    this.router.navigate(['/history']);
   }
 
   getBadgeColor(state: string) {

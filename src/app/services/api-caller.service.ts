@@ -7,6 +7,8 @@ import { FoodDetail } from '../shared/models/FoodDetail.model.js';
 import { StorageService } from './storage.service.js';
 import { Activity } from '../shared/models/Activity.model.js';
 import { ActivityDetail } from '../shared/models/ActivityDetail.model';
+import { environment } from 'src/environments/environment.js';
+import { History, HistoryDetail } from '../shared/models/History.model.js';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +60,35 @@ export class ApiCallerService {
           reject();
         }
       );
+    });
+  }
+
+  getHistoryList(): Promise<History[]> {
+    return new Promise<History[]>((resolve, reject) => {
+      this.storage.getUserInfo().then(cacheUser => {
+        this.http.get<History[]>(`${environment.apiURL}/customer/history/${cacheUser.uid}`, { observe: 'response' })
+          .subscribe(
+            res => {
+              const body = res.body.map(ele => {
+                ele.dateTime = new Date(ele.dateTime);
+                return ele;
+              });
+              resolve(body);
+            }, err => console.error(err)
+          );
+      });
+    });
+  }
+
+  getHistoryDetail(hid: string) {
+    return new Promise<HistoryDetail>((resolve, reject) => {
+      this.http.get<HistoryDetail>(`${environment.apiURL}/customer/history/detail/${hid}`, { observe: 'response' })
+        .subscribe(
+          res => {
+            res.body.dateTime = new Date(res.body.dateTime);
+            resolve(res.body);
+          }, err => console.error(err)
+        );
     });
   }
 
