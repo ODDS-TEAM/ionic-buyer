@@ -51,7 +51,7 @@ export class HistoryDetailComponent implements OnInit {
 
   getBadgeText(state: string) {
     switch (state) {
-      case 'cp': return 'Succuess';
+      case 'cp': return 'Success';
       case 'cc': return 'Cancel';
     }
   }
