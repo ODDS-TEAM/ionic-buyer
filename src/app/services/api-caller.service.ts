@@ -157,6 +157,7 @@ export class ApiCallerService {
         body: basket
       }).subscribe(
         res => {
+          console.log(res.body);
           resolve(res.body);
         }, err => {
           reject(err);
@@ -186,7 +187,7 @@ export class ApiCallerService {
           observe: 'response'
         }).subscribe(
           res => {
-            resolve(res.body);
+            resolve(res.body.reverse());
           }, err => {
             if (err.status === 401) {
               resolve([]);

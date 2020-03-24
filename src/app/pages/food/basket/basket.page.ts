@@ -67,10 +67,10 @@ export class BasketPage implements OnInit {
     popover.onDidDismiss().then(async (res: OverlayEventDetail) => {
       if (res.data === this.COMPLETE) {
         try {
-          const bRes = await this.apiCaller.orderBasket(this.basket);
-          console.log(bRes);
+          const bRes: any = await this.apiCaller.orderBasket(this.basket);
+          console.log('order res', bRes);
           await this.basketService.newBasket();
-          await this.modalController.dismiss('someactivityid', 'activity');
+          await this.modalController.dismiss(bRes._id, 'activity');
         } catch (err) {
           console.log(err);
         }

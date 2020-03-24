@@ -25,6 +25,9 @@ export class ActivityPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (this.router.getCurrentNavigation().extras.queryParams.openActivityDetail) {
+      this.openActivityModalFromId(this.router.getCurrentNavigation().extras.queryParams.activityId);
+    }
     this.presentLoading().then(loading => {
       this.getActivityList().then(() => {
         loading.dismiss();
@@ -63,6 +66,25 @@ export class ActivityPage implements OnInit {
     if (event) {
       event.target.complete();
     }
+  }
+
+  async openActivityModalFromId(id: string) {
+    const loading = await this.presentLoading();
+    const activityDetail = await this.api.getActivityDetail(id);
+    const modal = await this.modalController.create({
+      component: ActivityDetailPage,
+      componentProps: {
+        activityDetail
+      }
+    });
+
+    modal.onDidDismiss().then(res => {
+      // Do something after modal dismiss
+    }).catch(err => console.log(err))
+    .finally(() => {
+    });
+    await loading.dismiss();
+    await modal.present();
   }
 
   async openActivityModal(index: number) {
