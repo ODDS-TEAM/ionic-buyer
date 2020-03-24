@@ -1,76 +1,48 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons class="ion-margin-start" slot="start">
-      <ion-back-button
-        color="dark"
-        [text]="''"
-        defaultHref="/main/home"
-      ></ion-back-button>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" defaultHref="/main/home"></ion-back-button>
     </ion-buttons>
-    <p class="ion-margin-start title-header">Food</p>
+    <ion-title>Food</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="light" class="ion-padding-top">
-  <ion-toolbar
-    color="light"
-    class="ion-text-center"
-    *ngIf="!isLoading && dayMenus.length == 0"
-  >
+  <ion-toolbar color="light" class="ion-text-center" *ngIf="!isLoading && dayMenus.length == 0">
     <ion-text color="darkgray">
       There's no menu today :(
     </ion-text>
   </ion-toolbar>
-  <ion-list
-    *ngFor="let restaurant of dayMenus; let r=index"
-    class="ion-padding-bottom"
-  >
+  <ion-list *ngFor="let restaurant of dayMenus; let r=index" class="ion-padding-bottom">
     <ion-list-header class="ion-padding-end">
       <ion-text color="darkgray">{{ restaurant.restaurantName }}</ion-text>
     </ion-list-header>
 
-    <ion-item
-      *ngFor="let menu of restaurant.menus; let m=index"
-      (click)="goToFoodOption(r, m)"
-      [disabled]="menu.foodLeft === 0"
-    >
+    <ion-item button *ngFor="let menu of restaurant.menus; let m=index" (click)="goToFoodOption(r, m)"
+      [disabled]="menu.foodLeft === 0">
       <ion-grid>
         <ion-row>
           <ion-col size="4">
-            <ion-img
-              style="object-fit: cover; height: 80px; margin: 4px auto;"
-              [src]="menu.imageUrl"
-            ></ion-img>
+            <ion-img style="object-fit: cover; height: 80px; margin: 4px auto;" [src]="menu.imageUrl"></ion-img>
           </ion-col>
           <ion-col size="6" class="ion-padding-start">
-            <ion-text color="darkgray" class="menu-text"
-              >{{ menu.menuName }}</ion-text
-            >
+            <ion-text color="darkgray" class="menu-text">{{ menu.menuName }}</ion-text>
           </ion-col>
           <ion-col class="ion-text-right" size="2">
-            <ion-text color="darkgray" class="price-text"
-            >{{ menu.price }}฿</ion-text
-            >
+            <ion-text color="darkgray" class="price-text">{{ menu.price }}฿</ion-text>
             <br>
           </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-text color="darkgray" style="position: absolute; right: 2rem; bottom: 1rem; font-size: smaller;">จำนวนที่เหลือ: {{ menu.foodLeft }}</ion-text>
+      <ion-text color="darkgray" style="position: absolute; right: 2rem; bottom: 1rem; font-size: smaller;">
+        จำนวนที่เหลือ: {{ menu.foodLeft }}</ion-text>
     </ion-item>
   </ion-list>
 
-  <ion-fab
-    *ngIf="basket.hasItem()"
-    vertical="bottom"
-    horizontal="end"
-    slot="fixed"
-    style="overflow: visible;"
-  >
+  <ion-fab *ngIf="basket.hasItem()" vertical="bottom" horizontal="end" slot="fixed" style="overflow: visible;">
     <ion-fab-button (click)="goToBasketView()" color="gprimary">
       <ion-icon name="md-basket"></ion-icon>
     </ion-fab-button>
-    <ion-badge style="position: absolute; top: 0; left: 0;" color="danger"
-      >{{ basket.getNumberOfItem() }}</ion-badge
-    >
+    <ion-badge style="position: absolute; top: 0; left: 0;" color="danger">{{ basket.getNumberOfItem() }}</ion-badge>
   </ion-fab>
 </ion-content>

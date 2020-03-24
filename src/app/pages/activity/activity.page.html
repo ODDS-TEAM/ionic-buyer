@@ -35,6 +35,8 @@
 
     <!-- Iteration item -->
     <ion-item
+      button
+      detail="false"
       *ngFor="let activity of activityList; let i=index;"
       (click)="openActivityModal(i)"
       style="margin-bottom: 8px;"

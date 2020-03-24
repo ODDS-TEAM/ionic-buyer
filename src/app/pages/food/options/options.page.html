@@ -37,7 +37,7 @@
 
       <!-- Iterate Choice -->
       <ion-radio-group >
-        <ion-item *ngFor="let choice of option.choices; let c=index">
+        <ion-item button *ngFor="let choice of option.choices; let c=index">
           <ion-radio
             color="gprimary"
             mode="md"
@@ -60,7 +60,7 @@
           {{ option.titleOption }}
         </ion-list-header>
 
-        <ion-item *ngFor="let choice of option.choices; let c=index">
+        <ion-item button *ngFor="let choice of option.choices; let c=index">
           <ion-checkbox
             color="gprimary"
             mode="md"

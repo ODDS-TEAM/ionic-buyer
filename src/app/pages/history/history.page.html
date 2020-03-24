@@ -1,9 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons>
-      <ion-buttons slot="start">
-        <ion-back-button color="lightgray" text="Back" defaultHref="/main/home"></ion-back-button>
-      </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" defaultHref="/main/home"></ion-back-button>
     </ion-buttons>
     <ion-title>History</ion-title>
   </ion-toolbar>
@@ -12,9 +10,8 @@
 <ion-content color="whitegray ion-padding-top">
   <ion-list>
     <!-- Iteration item -->
-    <ion-item class="ion-padding-start ion-padding-end"
-      *ngFor="let history of historyList; let i=index;" (click)="onPressHistoryItem(i)">
-      <ion-grid>
+    <ion-item button *ngFor="let history of historyList; let i=index;" (click)="onPressHistoryItem(i)">
+      <ion-grid class="ion-padding-horizontal">
         <ion-row class="ion-align-items-center">
           <ion-col size="2" class="ion-align-items-center ion-justify-content-center">
             <ion-avatar class="ion-align-self-center" style="margin: auto; ">
