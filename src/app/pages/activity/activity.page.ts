@@ -25,7 +25,8 @@ export class ActivityPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.router.getCurrentNavigation().extras.queryParams.openActivityDetail) {
+    const extras = this.router.getCurrentNavigation().extras;
+    if (extras && extras.queryParams && extras.queryParams.openActivityDetail) {
       this.openActivityModalFromId(this.router.getCurrentNavigation().extras.queryParams.activityId);
     }
     this.presentLoading().then(loading => {

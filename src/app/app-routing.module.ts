@@ -45,6 +45,14 @@ const routes: Routes = [
     path: 'history',
     loadChildren: () => import('./pages/history/history.module').then( m => m.HistoryPageModule)
   },
+  {
+    path: 'create-table',
+    loadChildren: () => import('./pages/co-eating/create-table/create-table.module').then( m => m.CreateTablePageModule)
+  },
+  {
+    path: 'table-view',
+    loadChildren: () => import('./pages/co-eating/table-view/table-view.module').then( m => m.TableViewPageModule)
+  },
 ];
 @NgModule({
   imports: [

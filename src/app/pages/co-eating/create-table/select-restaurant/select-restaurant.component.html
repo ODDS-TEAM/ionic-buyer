@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button (click)="onPressClose()">
+        <ion-icon color="dark" class="font-xx-large" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Select restaurant</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="whitegray" class="ion-padding-top ion-padding-bottom">
+  <ion-list lines="none">
+    <ion-item lines="none" button detail *ngFor="let restaurant of restaurantList; let i=index"
+      (click)="onPressRestaurantItem(i)" [class.selected]="isSelected(restaurant)">
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="4" style="padding: 8px;">
+            <ion-img style="object-fit: cover; height: 64px;" [src]="restaurant.imageUrl"></ion-img>
+          </ion-col>
+          <ion-col size="8" class="ion-padding">
+            <ion-text class="font-smaller" color="dark" style="font-weight: bold;">
+              {{ restaurant.restaurantName }}</ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

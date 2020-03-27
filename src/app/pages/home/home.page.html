@@ -40,7 +40,7 @@
                   </div>
                 </ion-col>
                 <ion-col class="ion-text-center">
-                  <div class="ion-margin" (click)="goToPunsuk()">
+                  <div class="ion-margin" (click)="onPressCoEating()">
                     <ion-img
                       class="two-menu-img"
                       [src]="'../../../assets/images/business-and-finance.png'"
@@ -49,7 +49,7 @@
                       class="ion-margin-bottom"
                       color="darkgray"
                       style="font-weight: bolder;"
-                      >Punsuk</ion-label
+                      >Co-eating</ion-label
                     >
                   </div>
                 </ion-col>
@@ -61,7 +61,7 @@
 
       <div class="container">
         <h6 class="margin-top-negative ion-margin this-week-header">
-          lunch this week
+          Lunch this week
         </h6>
         <ion-card
           class="this-week-card ion-no-padding"
@@ -83,60 +83,6 @@
               >
                 <ion-card-content class="ion-no-padding" style="height: 100%;">
                   <ion-img class="scroll-img" [src]="imageUrl"></ion-img>
-                </ion-card-content>
-              </ion-card>
-            </div>
-          </ion-card-content>
-        </ion-card>
-
-        <h6 class="ion-margin this-week-header">
-          punsuk this week
-        </h6>
-        <ion-card
-          class="this-week-card ion-no-padding"
-          color="light"
-          (click)="goToPunsukThisWeek()"
-        >
-          <ion-card-content class="ion-no-padding">
-            <div scrollX="true" class="scroll">
-              <ion-card class="ion-no-padding ion-no-margin scroll-item">
-                <ion-card-content class="ion-no-padding" style="height: 100%;">
-                  <ion-img
-                    class="scroll-img"
-                    [src]="'../../../assets/images/hamburger.jpg'"
-                  ></ion-img>
-                </ion-card-content>
-              </ion-card>
-              <ion-card class="ion-no-padding ion-no-margin scroll-item">
-                <ion-card-content class="ion-no-padding" style="height: 100%;">
-                  <ion-img
-                    class="scroll-img"
-                    [src]="'../../../assets/images/hamburger.jpg'"
-                  ></ion-img>
-                </ion-card-content>
-              </ion-card>
-              <ion-card class="ion-no-padding ion-no-margin scroll-item">
-                <ion-card-content class="ion-no-padding" style="height: 100%;">
-                  <ion-img
-                    class="scroll-img"
-                    [src]="'../../../assets/images/hamburger.jpg'"
-                  ></ion-img>
-                </ion-card-content>
-              </ion-card>
-              <ion-card class="ion-no-padding ion-no-margin scroll-item">
-                <ion-card-content class="ion-no-padding" style="height: 100%;">
-                  <ion-img
-                    class="scroll-img"
-                    [src]="'../../../assets/images/hamburger.jpg'"
-                  ></ion-img>
-                </ion-card-content>
-              </ion-card>
-              <ion-card class="ion-no-padding ion-no-margin scroll-item">
-                <ion-card-content class="ion-no-padding" style="height: 100%;">
-                  <ion-img
-                    class="scroll-img"
-                    [src]="'../../../assets/images/hamburger.jpg'"
-                  ></ion-img>
                 </ion-card-content>
               </ion-card>
             </div>

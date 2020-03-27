@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -28,7 +28,24 @@
 @import "./theme/custom.scss";
 
 .confirm-popover .popover-content {
-    --min-width: 80%;
-    --min-height: 30%;
+  --min-width: 80%;
+  --min-height: 30%;
+}
+
+.menu-list-popover .popover-content {
+  --min-width: 90vw;
+  --min-height: 70vh;
+  top: 15vh !important;
+  left: 5vw !important;
+}
+
+.alert-button,
+.action-sheet-button {
+  &.color-danger {
+    color: var(--ion-color-danger);
   }
-  
+}
+
+.gradient-button {
+  --background: linear-gradient(270deg, #4BDB9D, #40B8AD);
+}

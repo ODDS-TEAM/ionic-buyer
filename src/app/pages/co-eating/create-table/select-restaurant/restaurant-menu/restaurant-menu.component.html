@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon slot="start" name="close" class="font-xx-large" (click)="onPressClose()"></ion-icon>
+    <ion-title>{{ restaurantName }}</ion-title>
+    <ion-button slot="end" size="small" color="gprimary" (click)="onPressConfirmRestaurant()">
+      Select
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none">
+    <ion-item *ngFor="let menu of menuList; let i=index">
+      <ion-grid fixed>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="4">
+            <ion-img [src]="menu.imageUrl" style="object-fit: cover; height: 64px;"></ion-img>
+          </ion-col>
+          <ion-col size="6">
+            <ion-text class="font-smaller" color="dark">{{ menu.menuName }}</ion-text>
+          </ion-col>
+          <ion-col size="2">
+            <ion-text class="font-smaller ion-text-right" color="dark">{{ menu.price }}฿</ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

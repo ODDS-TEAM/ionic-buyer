@@ -1,0 +1,7 @@
+ion-item:last-child {
+    --inner-border-width: 0;
+}
+
+ion-item.selected {
+    --background: ghostwhite;
+}

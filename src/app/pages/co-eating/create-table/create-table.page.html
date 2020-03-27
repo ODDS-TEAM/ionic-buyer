@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" defaultHref="/main/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Create table</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--padding-top: 8vh; --padding-start: 24px; --padding-end: 24px;">
+
+  <!-- Table name field -->
+  <ion-label class="ion-padding-bottom font-smaller" color="darkgray">Table name</ion-label>
+  <ion-item class="ion-no-padding" style="padding-bottom: 36px;">
+    <ion-input [(ngModel)]="tableName" type="text" class="font-smaller ion-align-self-end" style="--padding-start: 8px; --padding-bottom: 4px; --padding-top: 0;" color="dark"></ion-input>
+  </ion-item>
+
+  <!-- Select restaurant field -->
+  <ion-label class="ion-padding-bottom font-smaller" color="darkgray">Select restaurant</ion-label>
+  <ion-item *ngIf="selectedRestaurant" (click)="onPressRestaurant()" lines="none" button detail="false" class="ion-no-padding">
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="4" style="padding: 8px;">
+          <ion-img style="object-fit: cover; height: 64px;" [src]="selectedRestaurant.imageUrl"></ion-img>
+        </ion-col>
+        <ion-col size="8" class="ion-padding">
+          <ion-text class="font-smaller" color="dark" style="font-weight: bold;">{{ selectedRestaurant.restaurantName }}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <ion-item *ngIf="!selectedRestaurant" (click)="onPressRestaurant()" lines="none" button detail="false" class="ion-no-padding" style="--background: whitesmoke;">
+    <ion-grid>
+      <ion-row class="ion-align-items-center height: 64px;">
+        <ion-col size="12" class="ion-padding">
+          <ion-text class="font-smaller" color="dark">Please select restaurant</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+
+  <!-- Submit button -->
+  <ion-toolbar class="ion-text-center" style="position: fixed; bottom: 36px; left: 0;">
+    <ion-button (click)="onPressCreate()" shape="round" class="gradient-button" style="height: 36px; width: 9rem;" [disabled]="tableName.trim() === '' || !selectedRestaurant">
+      <ion-text class="font-weight-bold">
+        Create
+      </ion-text>
+    </ion-button>
+  </ion-toolbar>
+</ion-content>
